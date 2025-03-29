@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
-using SuneDoes.UI.Configuration;
+using Heartbreak.Boulevard.UI.Configuration;
 
-namespace SuneDoes.UI.Components;
+namespace Heartbreak.Boulevard.UI.Pages;
 
 public partial class App
 {
 
     [Inject]
-    public IOptions<SuneDoesConfiguration> Configuration { get; set; }
+    public IOptions<HBBConfiguration> Configuration { get; set; }
 
     private string AppBase => string.IsNullOrWhiteSpace(Configuration.Value.HostingBasePath) ? "/" : $"/{Configuration.Value.HostingBasePath}/";
 
