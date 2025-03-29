@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sunedoes
+  labels:
+    app: sunedoes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sunedoes
+  template:
+    metadata:
+      labels:
+        app: sunedoes
+    spec:
+      containers:
+      - name: sunedoes
+        image: docker.io/library/sunedoes:1.0.43
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+          name: http-sunedoes
+        env:
+           - name: HostingBasePath
+             valueFrom: 
+               configMapKeyRef:
+                 name: sunedoes-config
+                 key: SuneDoes.BasePath
+           - name: Email__VerifyEmailUrl
+             valueFrom: 
+               configMapKeyRef:
+                 name: sunedoes-config
+                 key: Email.VerifyEmailUrl
+           - name: Db__ConnectionString
+             valueFrom:
+               secretKeyRef:
+                 name: sunedoes-secrets
+                 key: dbconnstring
+           - name: Email__ApiToken
+             valueFrom:
+               secretKeyRef:
+                 name: sunedoes-secrets
+                 key: emailapitoken
+           - name: GitHubToken
+             valueFrom:
+               secretKeyRef:
+                 name: sunedoes-secrets
+                 key: githubpat
+
+
+
+
