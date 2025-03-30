@@ -1,0 +1,22 @@
+﻿.hbb-layout-lights {
+    position: absolute;
+    width: 200%;
+    height: 170%;
+    animation-name: pollights;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+@keyframes pollights {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

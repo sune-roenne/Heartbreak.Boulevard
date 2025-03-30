@@ -1,7 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page hbb-page-bg">
-    <main class="hbb-page-main">
+<div class="page hbb-layout-bg">
+    <div class="hbb-layout-lights-container">
+        <PoliceLightsComponent PositionLeft="-110%" PositionTop="-110%" ZIndex="4"></PoliceLightsComponent>
+        <PoliceLightsComponent PositionLeft="10%" PositionTop="10%" ZIndex="6"></PoliceLightsComponent>
+
+    </div>
+    <main class="hbb-layout-main">
        @Body
     </main>
 </div>
