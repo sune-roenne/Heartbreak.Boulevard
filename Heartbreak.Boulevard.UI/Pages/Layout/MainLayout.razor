@@ -6,16 +6,28 @@
     </div>
     <div class="hbb-layout-row">
         <div class="hbb-layout-sidenav">
+            <div class="hbb-layout-sidenav-chapters-container">
+                <h1 class="hbb-layout-sidenav-chapters-header">Chapters</h1>
+                <div class="hbb-layout-sidenav-chapters-list">
+                </div>
+            </div>
         </div>
         <div class="hbb-layout-bg">
             <div class="hbb-layout-lights-container">
                 <PoliceLightsComponent PositionLeft="-110%" PositionTop="-110%" ZIndex="4"></PoliceLightsComponent>
                 <PoliceLightsComponent PositionLeft="10%" PositionTop="10%" ZIndex="6"></PoliceLightsComponent>
             </div>
-            <HeartbreakBoulevardComponent></HeartbreakBoulevardComponent>
+            <div class="hbb-layout-flash-container">
+                <HeartbreakBoulevardComponent></HeartbreakBoulevardComponent>
+            </div>
 
             <main class="hbb-layout-main">
-                @Body
+                @if(_session != null) 
+                {
+                    <CascadingValue Value="_session">
+                        @Body
+                    </CascadingValue>
+                }
             </main>
         </div>
     </div>

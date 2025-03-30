@@ -1,8 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Chapter\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Booktex.Html" Version="1.4.1" />
+    <PackageReference Include="Octokit" Version="14.0.0" />
+  </ItemGroup>
 </Project>

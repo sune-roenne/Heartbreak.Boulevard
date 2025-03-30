@@ -16,6 +16,9 @@
     background-color: white;
     display: flex;
     flex-direction: row;
+    background-color: rgba(100,100,100, 0.2);
+    border-bottom: 0.5px solid rgb(100,100,100);
+    box-shadow: 1px 1px rgb(200,200,200);
 }
 
 .hbb-layout-logo {
@@ -41,15 +44,22 @@
 .hbb-layout-sidenav {
     width: 300px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid rgba(100,100,100,0.6);
+}
+
+.hbb-layout-sidenav-chapters-container {
+
 }
 
 
 .hbb-layout-bg {
     position: relative;
-    width: 1500px;
-    height: 1667px;
+    width: 1667px;
+    height: 1500px;
     background-image: url('images/layout/background.webp');
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
@@ -72,6 +82,14 @@
     animation-duration: 20s;
     animation-iteration-count: 1;
     animation-fill-mode: both;
+}
+
+.hbb-layout-flash-container {
+    position: absolute;
+    top: 54%;
+    left: 15%;
+    transform: rotate(1.9deg);
+
 }
 
 .hbb-layout-main {

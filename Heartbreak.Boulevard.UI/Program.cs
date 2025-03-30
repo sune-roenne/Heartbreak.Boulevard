@@ -1,14 +1,22 @@
 using Heartbreak.Boulevard.UI;
 using Heartbreak.Boulevard.UI.Components;
+using Heartbreak.Boulevard.UI.Configuration;
+using Heartbreak.Boulevard.UI.Integration;
 using Heartbreak.Boulevard.UI.Pages;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.json", optional: false);
+builder.Configuration.AddJsonFile("appsettings.local.json", optional: true);
+builder.Configuration.AddEnvironmentVariables();
+builder.Services.Configure<HBBConfiguration>(builder.Configuration.GetSection(HBBConfiguration.ConfigurationElementName));
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<IHBBGitHubClient, HBBGitHubClient>();
 
 var app = builder.Build();
 
