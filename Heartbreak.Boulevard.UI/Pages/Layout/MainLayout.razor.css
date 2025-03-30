@@ -1,14 +1,63 @@
-.hbb-layout-bg {
+.hbb-layout {
     position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hbb-layout-topnav {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.hbb-layout-logo {
+    width: 500px;
+    aspect-ratio: 500/40;
+    background-image: url('images/layout/logo.webp');
+    background-size: 100%;
+    margin-left: 200px;
+}
+
+.hbb-layout-row {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.hbb-layout-sidenav {
+    width: 300px;
+    height: 100%;
+}
+
+
+.hbb-layout-bg {
+    position: relative;
+    width: 1500px;
+    height: 1667px;
     background-image: url('images/layout/background.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
+.hbb-layout-row-fill {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
 
 .hbb-layout-lights-container {
     position: absolute;

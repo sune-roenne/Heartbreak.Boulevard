@@ -1,0 +1,32 @@
+﻿.hbb-layout-neon {
+    position: absolute;
+    height: 130%;
+    font-family: 'Ink Free';
+    font-size: 50pt;
+    display: flex;
+    flex-direction: row;
+    left: 10%;
+    top: 20%;
+    z-index: 50;
+    color: red;
+}
+
+hbb-layout-neon-ch1 {
+    color: rgb(133, 56, 159);
+}
+
+hbb-layout-neon-ch2 {
+    color: rgb(133, 56, 159);
+}
+
+hbb-layout-neon-ch3 {
+    color: rgb(133, 56, 159);
+}
+
+.hbb-layout-neon-ch4 {
+    color: rgb(133, 56, 159);
+}
+
+.hbb-layout-neon-ch5 {
+    color: rgb(133, 56, 159);
+}
