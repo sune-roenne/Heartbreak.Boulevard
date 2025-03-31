@@ -4,3 +4,15 @@
     font-style: normal;
     src: url('fonts/adrip1.ttf');
 }
+@font-face {
+    font-family: 'PoPo';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/popo.ttf');
+}
+@font-face {
+    font-family: 'ShowcardGothic';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/SHOWG.TTF');
+}

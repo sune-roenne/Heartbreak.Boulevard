@@ -1,4 +1,5 @@
 ﻿using Heartbreak.Boulevard.UI.Integration;
+using Heartbreak.Boulevard.UI.Integration.Story;
 using Heartbreak.Boulevard.UI.Session;
 using Microsoft.AspNetCore.Components;
 
@@ -11,6 +12,7 @@ public partial class MainLayout
     [Inject]
     public IHBBGitHubClient GithubClient { get; set; }
 
+    private HBBChapterEntry? _selectedChapter;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -21,6 +23,11 @@ public partial class MainLayout
         }
     }
 
+    private void OnChapterSelected(HBBChapterEntry chapter)
+    {
+        _selectedChapter = chapter;
+        InvokeAsync(StateHasChanged);
+    }
 
 
 }

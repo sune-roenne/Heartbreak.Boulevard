@@ -1,7 +1,7 @@
 ﻿.hbb-layout-lights {
     position: absolute;
-    width: 200%;
-    height: 170%;
+    width: 260%;
+    height: 150%;
     animation-name: pollights;
     animation-duration: 3s;
     animation-iteration-count: infinite;

@@ -6,6 +6,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: rgba(0,0,0,0.9);
 }
 
 .hbb-layout-topnav {
@@ -19,6 +20,7 @@
     background-color: rgba(100,100,100, 0.2);
     border-bottom: 0.5px solid rgb(100,100,100);
     box-shadow: 1px 1px rgb(200,200,200);
+    background-color: rgba(240,240,240,0.8);
 }
 
 .hbb-layout-logo {
@@ -42,16 +44,89 @@
 }
 
 .hbb-layout-sidenav {
+    position: relative;
     width: 300px;
     height: 100%;
     display: flex;
     flex-direction: column;
     border-right: 2px solid rgba(100,100,100,0.6);
+    background-color: rgba(255,255,255,0.9);
+    font-family: 'PoPo';
 }
+
+.hbb-layout-sidenav-top-decor {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100px;
+    z-index: 1;
+    background-image: url('images/layout/sidenav-top.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.hbb-layout-sidenav-content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding: 20px;
+    padding-top: 100px;
+}
+
 
 .hbb-layout-sidenav-chapters-container {
-
 }
+
+.hbb-layout-sidenav-chapters-header {
+    color: rgb(212,230,0);
+    text-shadow: 2px 2px 2px rgb(36,70,98);
+}
+
+
+
+.hbb-layout-sidenav-chapters-list {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border-style: inset;
+    border-width: 1px;
+    border-color: rgb(10,10,10);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.hbb-layout-sidenav-chapters-chap {
+    border: none;
+    width: 200px;
+    text-align: left;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    font-family: 'Special Elite';
+    font-size: 10pt;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hbb-layout-sidenav-bottom-decor {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100px;
+    z-index: 1;
+    background-image: url('images/layout/sidenav-bottom.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 
 
 .hbb-layout-bg {
@@ -99,6 +174,13 @@
     width: 100%;
     height: 100%;
     z-index: 10;
+}
+
+
+.hbb-layout-chapter-display-container {
+    top: 100px;
+    left: 30%;
+    padding: 50px;
 }
 
 @keyframes removelights {

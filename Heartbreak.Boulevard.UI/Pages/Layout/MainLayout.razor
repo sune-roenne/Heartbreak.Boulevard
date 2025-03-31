@@ -6,29 +6,62 @@
     </div>
     <div class="hbb-layout-row">
         <div class="hbb-layout-sidenav">
-            <div class="hbb-layout-sidenav-chapters-container">
-                <h1 class="hbb-layout-sidenav-chapters-header">Chapters</h1>
-                <div class="hbb-layout-sidenav-chapters-list">
-                </div>
-            </div>
-        </div>
-        <div class="hbb-layout-bg">
-            <div class="hbb-layout-lights-container">
-                <PoliceLightsComponent PositionLeft="-110%" PositionTop="-110%" ZIndex="4"></PoliceLightsComponent>
-                <PoliceLightsComponent PositionLeft="10%" PositionTop="10%" ZIndex="6"></PoliceLightsComponent>
-            </div>
-            <div class="hbb-layout-flash-container">
-                <HeartbreakBoulevardComponent></HeartbreakBoulevardComponent>
+            <div class="hbb-layout-sidenav-top-decor"></div>
+            <div class="hbb-layout-sidenav-content">
+                <div class="hbb-layout-sidenav-chapters-container">
+                    <h1 class="hbb-layout-sidenav-chapters-header">CHAPTERS</h1>
+                    <div class="hbb-layout-sidenav-chapters-list">
+                        @if (_session != null)
+                        {
+                            foreach (var chap in _session.Chapters)
+                            {
+                                <button class="hbb-layout-sidenav-chapters-chap"
+                                        type="button"
+                                        @onclick="@(() => OnChapterSelected(chap))"
+                                        disabled="@(chap.Content == null ? "disabled" : null)">
+                                    @(chap.Specification.ChapterName)
+                                </button>
+
+                            }
+                        }
+                    </div>
             </div>
 
-            <main class="hbb-layout-main">
-                @if(_session != null) 
-                {
-                    <CascadingValue Value="_session">
-                        @Body
-                    </CascadingValue>
-                }
-            </main>
+            </div>
+            <div class="hbb-layout-sidenav-bottom-decor"></div>
+
         </div>
+        @if(_selectedChapter != null && _selectedChapter.Content != null) 
+        {
+            <div class="hbb-layout-chapter-above"></div>
+            <div class="hbb-layout-chapter-display-container">
+                <Booktex.Html.Story.StoryComponent 
+                    Contents="_selectedChapter.Content" 
+                    ChapterName="@(_selectedChapter.Specification.ChapterName)">
+                </Booktex.Html.Story.StoryComponent>
+            </div>
+
+        }
+        else {
+            <div class="hbb-layout-bg">
+                <div class="hbb-layout-lights-container">
+                    <PoliceLightsComponent PositionLeft="-110%" PositionTop="-110%" ZIndex="4"></PoliceLightsComponent>
+                    <PoliceLightsComponent PositionLeft="10%" PositionTop="10%" ZIndex="6"></PoliceLightsComponent>
+                </div>
+                <div class="hbb-layout-flash-container">
+                    <HeartbreakBoulevardComponent></HeartbreakBoulevardComponent>
+                </div>
+
+                <main class="hbb-layout-main">
+                    @if (_session != null)
+                    {
+                        <CascadingValue Value="_session">
+                            @Body
+                        </CascadingValue>
+                    }
+                </main>
+            </div>
+
+        }
     </div>
 </div>

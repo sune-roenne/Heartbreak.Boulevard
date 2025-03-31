@@ -2,12 +2,20 @@
     position: absolute;
     left: 0%;
     top: 0%;
-    font-family: 'Showcard Gothic';
+    font-family: 'ShowcardGothic';
     font-size: 45pt;
     display: flex;
     flex-direction: row;
     z-index: 50;
     color: red;
+    background-color: rgba(255,255,255,1);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(29, 21, 179, 0.8);
+    box-shadow: rgba(194, 29, 54, 0.3) 0px 5px;
 }
 
 .hbb-layout-neon-ch {
@@ -15,6 +23,7 @@
     animation-direction: alternate-reverse;
     animation-iteration-count: infinite;
     animation-fill-mode: both;
+    text-decoration:solid black;
 }
 
 .hbb-layout-neon-ch1 {

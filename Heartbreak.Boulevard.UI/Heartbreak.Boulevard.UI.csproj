@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Booktex.Html" Version="1.4.1" />
+    <PackageReference Include="Booktex.Html" Version="1.4.3" />
     <PackageReference Include="Octokit" Version="14.0.0" />
   </ItemGroup>
 </Project>
