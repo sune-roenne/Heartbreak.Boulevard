@@ -10,8 +10,7 @@
             <div class="hbb-layout-row" @onclick="@(() => OnCloseClicked())">
                 <div class="hbb-layout-sidenav" @onclick:stopPropagation>
                     <div class="hbb-layout-player @(PlayerEjectionClass)">
-                        <SpotifyPlayerComponent PlaylistId="@_communications.CurrentPlaylistId"
-                                                InitDelay="(((_communications.RadioIsEjected ?? false) ? 1 : 2) *  TimeSpan.FromMilliseconds(500))"
+                        <SpotifyPlayerComponent InitDelay="(((_communications.RadioIsEjected ?? false) ? 1 : 2) *  TimeSpan.FromMilliseconds(500))"
                                                 Height="1000"
                                                 ExpandedWidth="250"
                                                 ></SpotifyPlayerComponent>

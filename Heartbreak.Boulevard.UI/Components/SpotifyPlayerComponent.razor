@@ -2,25 +2,40 @@
     <div id="@PlayerId"></div>
     <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script>
+        const boulevardTrackUri = 'spotify:track:3e3pkp0mPrSH3RC6qwiRFi'
         window.spotifyController = null
-        window.initSpotifyPlayer = async (playerId, playlistId) => {
+        window.initSpotifyPlayer = async (playerId) => {
             if(window.spotifyController == null) {
                 window.onSpotifyIframeApiReady = (IFrameAPI) => {
                     const playerDiv = document.getElementById(playerId)
-                    const playerUri = 'spotify:playlist:' + playlistId
-                    console.log('Configuring to use player URI: ' + playerUri)
+                    console.log('Configuring to use player URI: ' + boulevardTrackUri)
                     const options  = {
-                        uri: playerUri
+                        width: 0,
+                        height: 1000,
+                        uri: boulevardTrackUri
                     }
                     const callback = (EmbedController) => {
                         window.spotifyController = EmbedController
-                    }
+                        window.spotifyController.addListener('playback_update', e => {
+                            console.log(e)
+                        })                    }
                     IFrameAPI.createController(playerDiv, options, callback)
                 }
                 window.setDimensions = (width, height) => {
                     if(window.spotifyController != null) {
                         console.log('Finna update width=' + width + ' and height= ' + height)
                         window.spotifyController.setIframeDimensions(width, height)
+                    }
+                }
+                window.setPlaylistId = async (playlistId) => {
+                    if(window.spotifyController != null) {
+                        if(playlistId == null) {
+                            window.spotifyController.loadUri(boulevardTrackUri)
+                        }
+                        else {
+                           console.log('Finna update playlist ID = ' + playlistId)
+                           window.spotifyController.loadUri('spotify:playlist:' + playlistId)
+                        }
                     }
                 }
             }
