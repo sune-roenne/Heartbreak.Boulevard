@@ -43,6 +43,27 @@
     overflow-y: hidden;
 }
 
+.hbb-layout-player {
+    position: absolute;
+    top: 0px;
+    left: 300px;
+    height: 100%;
+    z-index: 3000;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    background-color: rgb(200,200,200);
+}
+
+.player-ejected {
+    animation-name: ejectmusic;
+}
+
+.player-not-ejected {
+    animation-name: unejectmusic;
+}
+
 .hbb-layout-sidenav {
     position: relative;
     width: 300px;
@@ -74,9 +95,19 @@
     height: 100%;
     z-index: 2;
     padding: 20px;
-    padding-top: 100px;
+    padding-top: 70px;
 }
 
+.hbb-layout-sidenav-radio-container {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 220px;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 1px;
+}
 
 .hbb-layout-sidenav-chapters-container {
 }
@@ -89,7 +120,7 @@
 
 
 .hbb-layout-sidenav-chapters-list {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
     border-style: inset;
@@ -105,8 +136,8 @@
     width: 200px;
     text-align: left;
     padding-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-left: 5px;
     font-family: 'Special Elite';
     font-size: 10pt;
@@ -178,9 +209,10 @@
 
 
 .hbb-layout-chapter-display-container {
-    top: 100px;
-    left: 30%;
-    padding: 50px;
+    position: relative;
+    top: 0px;
+    left: 340px;
+    padding: 0px;
 }
 
 @keyframes removelights {
@@ -193,5 +225,24 @@
     100% {
         opacity: 0%;
         display: none;
+    }
+}
+
+@keyframes ejectmusic {
+    0% {
+        width: 0px;
+    }
+    100% {
+        width: 300px;
+    }
+}
+
+@keyframes unejectmusic {
+    0% {
+        width: 300px;
+    }
+
+    100% {
+        width: 0px;
     }
 }

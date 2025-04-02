@@ -1,13 +1,23 @@
-﻿@inherits LayoutComponentBase
+﻿@using Heartbreak.Boulevard.UI.Story
+@inherits LayoutComponentBase
 
 <div class="page hbb-layout">
     <div class="hbb-layout-topnav">
         <div class="hbb-layout-logo"></div>
     </div>
-    <div class="hbb-layout-row">
-        <div class="hbb-layout-sidenav">
+    <div class="hbb-layout-row" @onclick="@(() => OnCloseClicked())">
+        <div class="hbb-layout-sidenav" @onclick:stopPropagation>
+            @if(_playerIsOn && _selectedChapter?.Specification?.PlaylistId != null) {
+                <div class="hbb-layout-player @(_playerIsEjected ? "player-ejected" : "player-not-ejected")">
+                    <SpotifyPlayerComponent PlaylistId="@_selectedChapter?.Specification?.PlaylistId"></SpotifyPlayerComponent>
+                </div>
+            }
             <div class="hbb-layout-sidenav-top-decor"></div>
             <div class="hbb-layout-sidenav-content">
+                <div class="hbb-layout-sidenav-radio-container">
+                    <CarRadioComponent OnIsEjectedChanged="OnPlayerEjectedChanged" OnPowerStatusChanged="OnPlayerIsOnChanged" PlayerCanPlay="PlayerCanPlay"></CarRadioComponent>
+                </div>
+
                 <div class="hbb-layout-sidenav-chapters-container">
                     <h1 class="hbb-layout-sidenav-chapters-header">CHAPTERS</h1>
                     <div class="hbb-layout-sidenav-chapters-list">
@@ -34,10 +44,12 @@
         @if(_selectedChapter != null && _selectedChapter.Content != null) 
         {
             <div class="hbb-layout-chapter-above"></div>
-            <div class="hbb-layout-chapter-display-container">
+            <div class="hbb-layout-chapter-display-container" @onclick:stopPropagation>
                 <Booktex.Html.Story.StoryComponent 
                     Contents="_selectedChapter.Content" 
-                    ChapterName="@(_selectedChapter.Specification.ChapterName)">
+                    ChapterName="@(_selectedChapter.Specification.ChapterName)"
+                    BackgroundDeriver="QuoteBackgrounds.BackgroundFor"
+                >
                 </Booktex.Html.Story.StoryComponent>
             </div>
 

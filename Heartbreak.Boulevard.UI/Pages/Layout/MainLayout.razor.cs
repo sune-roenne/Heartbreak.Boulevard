@@ -29,5 +29,32 @@ public partial class MainLayout
         InvokeAsync(StateHasChanged);
     }
 
+    private void OnCloseClicked()
+    {
+        if (_selectedChapter != null)
+        {
+            _selectedChapter = null;
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private bool PlayerCanPlay => _selectedChapter?.Specification?.PlaylistId != null;
+
+    private void OnPlayerEjectedChanged(bool ejected)
+    {
+        _playerIsEjected = ejected;
+        InvokeAsync(StateHasChanged);
+    }
+    private void OnPlayerIsOnChanged(bool isOn)
+    {
+        _playerIsOn = isOn;
+        InvokeAsync(StateHasChanged);
+    }
+
+
+    private bool _playerIsEjected = false;
+    private bool _playerIsOn = false;
+
+
 
 }

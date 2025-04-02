@@ -1,0 +1,23 @@
+﻿@using Booktex.Domain.Util
+<div class="hbb-layout-radio-container">
+    <div class="hbb-layout-radio-display">
+    </div>
+    <div class="hbb-layout-radio-buttons-container">
+        <button 
+            class="hbb-layout-radio-power-button @PowerButtonClass" 
+            type="button"
+            @onclick="@(() => OnPowerClick())"
+            disabled="@(PlayerCanPlay ? null : "disabled")"
+        ></button>
+        <button 
+            class="hbb-layout-radio-eject-button" 
+            type="button" 
+            disabled="@((_isOn??false) ? null : "disabled" )"
+            @onclick="@(() => OnEjectClick())"
+        
+        ></button>
+
+    </div>
+
+
+</div>
