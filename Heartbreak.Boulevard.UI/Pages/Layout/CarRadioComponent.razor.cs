@@ -5,24 +5,17 @@ namespace Heartbreak.Boulevard.UI.Pages.Layout;
 
 public partial class CarRadioComponent
 {
-    [Parameter]
-    public bool PlayerCanPlay { get; set; }
-
-    [Parameter]
-    public Action<bool> OnPowerStatusChanged { get; set; }
-
-    [Parameter]
-    public Action<bool?> OnIsEjectedChanged { get; set; }
-
-    [Parameter]
-    public bool? IsOn { get; set; }
+    [CascadingParameter]
+    public HBBCommunication Communications { get; set; }
 
 
-    [Parameter]
-    public bool? IsEjected { get; set; }
+    private bool PlayerCanPlay => Communications.CanPlayRadio;
+    private bool PlayerCanEject => Communications.CanEjectRadio;
+
+    private bool RadioIsDisabled => !PlayerCanPlay;
 
 
-    private string PowerButtonClass => IsOn switch
+    private string PowerButtonClass => Communications.RadioIsOn switch
     {
         null => "un-powered",
         true => "power-on",
@@ -34,13 +27,7 @@ public partial class CarRadioComponent
     {
         if (PlayerCanPlay)
         {
-            IsOn = IsOn?.Pipe(_ => !_) ?? true;
-            OnPowerStatusChanged(IsOn.Value);
-            if(IsEjected == true && IsOn == false)
-            {
-                IsEjected = null;
-                OnIsEjectedChanged(null);
-            }
+            Communications.RadioIsOn = Communications.RadioIsOn?.Pipe(_ => !_) ?? true;
         }
     }
 
@@ -48,8 +35,7 @@ public partial class CarRadioComponent
     {
         if (PlayerCanPlay)
         {
-            IsEjected = IsEjected?.Pipe(_ => !_) ?? true;
-            OnIsEjectedChanged(IsEjected.Value);
+            Communications.RadioIsEjected = Communications.RadioIsEjected?.Pipe(_ => !_) ?? true;
         }
     }
 

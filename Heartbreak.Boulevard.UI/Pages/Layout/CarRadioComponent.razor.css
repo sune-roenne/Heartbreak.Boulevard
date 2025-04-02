@@ -1,8 +1,36 @@
 ﻿.hbb-layout-radio-container {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 220px;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 2px;
+    height: 170px;
+    background-image: url('images/layout/dark-car-leather.webp');
+    background-size: cover;
+}
+
+.hbb-layout-radio-content-overlay {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(100,100,100,0.3);
+}
+
+.hbb-layout-radio-content {
+    position: absolute;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 }
+
 
 .hbb-layout-radio-display {
     width: 200px;

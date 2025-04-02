@@ -1,22 +1,22 @@
 ﻿@using Booktex.Domain.Util
 <div class="hbb-layout-radio-container">
-    <div class="hbb-layout-radio-display">
-    </div>
-    <div class="hbb-layout-radio-buttons-container">
-        <button 
-            class="hbb-layout-radio-power-button @PowerButtonClass" 
-            type="button"
-            @onclick="@(() => OnPowerClick())"
-            disabled="@(PlayerCanPlay ? null : "disabled")"
-        ></button>
-        <button 
-            class="hbb-layout-radio-eject-button" 
-            type="button" 
-            disabled="@((IsOn ?? false) ? null : "disabled" )"
-            @onclick="@(() => OnEjectClick())"
-        
-        ></button>
+    @if(!Communications.CanPlayRadio) {
+        <div class="hbb-layout-radio-content-overlay"></div>
+    }
+    <div class="hbb-layout-radio-content">
+        <div class="hbb-layout-radio-display">
+        </div>
+        <div class="hbb-layout-radio-buttons-container">
+            <button class="hbb-layout-radio-power-button @PowerButtonClass"
+                    type="button"
+                    @onclick="@(() => OnPowerClick())"
+                    disabled="@(PlayerCanPlay ? null : "disabled")"></button>
+            <button class="hbb-layout-radio-eject-button"
+                    type="button"
+                    disabled="@(PlayerCanEject ? null : "disabled" )"
+                    @onclick="@(() => OnEjectClick())"></button>
 
+        </div>
     </div>
 
 

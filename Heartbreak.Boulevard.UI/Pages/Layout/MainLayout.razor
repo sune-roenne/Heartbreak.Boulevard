@@ -1,91 +1,84 @@
 ﻿@using Heartbreak.Boulevard.UI.Story
 @inherits LayoutComponentBase
 
-<div class="page hbb-layout">
-    <div class="hbb-layout-topnav">
-        <div class="hbb-layout-logo"></div>
-    </div>
-    <div class="hbb-layout-row" @onclick="@(() => OnCloseClicked())">
-        <div class="hbb-layout-sidenav" @onclick:stopPropagation>
-            @if((_playerIsOn ?? false) && _selectedChapter?.Specification?.PlaylistId != null) {
-                <div class="hbb-layout-player @(PlayerEjectionClass)">
-                    <SpotifyPlayerComponent 
-                        PlaylistId="@_selectedChapter?.Specification?.PlaylistId"
-                        InitDelay="TimeSpan.FromSeconds(1)"
-                        Height="1000"
-                        Width="@((_playerIsEjected ?? false) ? 250 : 0)"
-                    
-                    ></SpotifyPlayerComponent>
-                </div>
-            }
-            <div class="hbb-layout-sidenav-top-decor"></div>
-            <div class="hbb-layout-sidenav-content">
-                <div class="hbb-layout-sidenav-radio-container">
-                    <CarRadioComponent 
-                        OnIsEjectedChanged="OnPlayerEjectedChanged" 
-                        OnPowerStatusChanged="OnPlayerIsOnChanged" 
-                        PlayerCanPlay="PlayerCanPlay"
-                        IsEjected="_playerIsEjected"
-                        IsOn="_playerIsOn"
-                    ></CarRadioComponent>
-                </div>
-
-                <div class="hbb-layout-sidenav-chapters-container">
-                    <h1 class="hbb-layout-sidenav-chapters-header">CHAPTERS</h1>
-                    <div class="hbb-layout-sidenav-chapters-list">
-                        @if (_session != null)
-                        {
-                            foreach (var chap in _session.Chapters)
-                            {
-                                <button class="hbb-layout-sidenav-chapters-chap"
-                                        type="button"
-                                        @onclick="@(() => OnChapterSelected(chap))"
-                                        disabled="@(chap.Content == null ? "disabled" : null)">
-                                    @(chap.Specification.ChapterName)
-                                </button>
-
-                            }
-                        }
+@if(_communications != null) {
+    <CascadingValue Value="_communications">
+        <div class="page hbb-layout">
+            <div class="hbb-layout-topnav">
+                <div class="hbb-layout-logo"></div>
+            </div>
+            <div class="hbb-layout-row" @onclick="@(() => OnCloseClicked())">
+                <div class="hbb-layout-sidenav" @onclick:stopPropagation>
+                    <div class="hbb-layout-player @(PlayerEjectionClass)">
+                        <SpotifyPlayerComponent PlaylistId="@_communications.CurrentPlaylistId"
+                                                InitDelay="(((_communications.RadioIsEjected ?? false) ? 1 : 2) *  TimeSpan.FromMilliseconds(500))"
+                                                Height="1000"
+                                                ExpandedWidth="250"
+                                                ></SpotifyPlayerComponent>
                     </div>
-            </div>
+                    <div class="hbb-layout-sidenav-top-decor"></div>
+                    <div class="hbb-layout-sidenav-content">
+                        <div class="hbb-layout-sidenav-radio-container"><CarRadioComponent></CarRadioComponent></div>
 
-            </div>
-            <div class="hbb-layout-sidenav-bottom-decor"></div>
+                        <div class="hbb-layout-sidenav-chapters-container">
+                            <h1 class="hbb-layout-sidenav-chapters-header">CHAPTERS</h1>
+                            <div class="hbb-layout-sidenav-chapters-list">
+                                @if (_session != null)
+                                {
+                                    foreach (var chap in _session.Chapters)
+                                    {
+                                        <button class="hbb-layout-sidenav-chapters-chap"
+                                                type="button"
+                                                @onclick="@(() => OnChapterSelected(chap))"
+                                                disabled="@(chap.Content == null ? "disabled" : null)">
+                                            @(chap.Specification.ChapterName)
+                                        </button>
 
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="hbb-layout-sidenav-bottom-decor"></div>
+
+                </div>
+                @if (_communications?.CurrentChapterEntry?.Content != null)
+                {
+                    <div class="hbb-layout-chapter-above"></div>
+                    <div class="hbb-layout-chapter-display-container" @onclick:stopPropagation>
+                        <Booktex.Html.Story.StoryComponent Contents="_communications?.CurrentChapterEntry?.Content"
+                                                           ChapterName="@(_communications?.CurrentChapterEntry?.Specification.ChapterName)"
+                                                           BackgroundDeriver="QuoteBackgrounds.BackgroundFor">
+                        </Booktex.Html.Story.StoryComponent>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="hbb-layout-bg">
+                        <div class="hbb-layout-lights-container">
+                            <PoliceLightsComponent PositionLeft="-110%" PositionTop="-110%" ZIndex="4"></PoliceLightsComponent>
+                            <PoliceLightsComponent PositionLeft="10%" PositionTop="10%" ZIndex="6"></PoliceLightsComponent>
+                        </div>
+                        <div class="hbb-layout-flash-container">
+                            <HeartbreakBoulevardComponent></HeartbreakBoulevardComponent>
+                        </div>
+
+                        <main class="hbb-layout-main">
+                            @if (_session != null)
+                            {
+                                <CascadingValue Value="_session">
+                                    @Body
+                                </CascadingValue>
+                            }
+                        </main>
+                    </div>
+
+                }
+            </div>
         </div>
-        @if(_selectedChapter != null && _selectedChapter.Content != null) 
-        {
-            <div class="hbb-layout-chapter-above"></div>
-            <div class="hbb-layout-chapter-display-container" @onclick:stopPropagation>
-                <Booktex.Html.Story.StoryComponent 
-                    Contents="_selectedChapter.Content" 
-                    ChapterName="@(_selectedChapter.Specification.ChapterName)"
-                    BackgroundDeriver="QuoteBackgrounds.BackgroundFor"
-                >
-                </Booktex.Html.Story.StoryComponent>
-            </div>
 
-        }
-        else {
-            <div class="hbb-layout-bg">
-                <div class="hbb-layout-lights-container">
-                    <PoliceLightsComponent PositionLeft="-110%" PositionTop="-110%" ZIndex="4"></PoliceLightsComponent>
-                    <PoliceLightsComponent PositionLeft="10%" PositionTop="10%" ZIndex="6"></PoliceLightsComponent>
-                </div>
-                <div class="hbb-layout-flash-container">
-                    <HeartbreakBoulevardComponent></HeartbreakBoulevardComponent>
-                </div>
+    </CascadingValue>
 
-                <main class="hbb-layout-main">
-                    @if (_session != null)
-                    {
-                        <CascadingValue Value="_session">
-                            @Body
-                        </CascadingValue>
-                    }
-                </main>
-            </div>
-
-        }
-    </div>
-</div>
+}

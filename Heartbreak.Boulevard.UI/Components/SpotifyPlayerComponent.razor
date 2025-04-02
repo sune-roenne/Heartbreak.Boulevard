@@ -2,24 +2,26 @@
     <div id="@PlayerId"></div>
     <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script>
+        window.spotifyController = null
         window.initSpotifyPlayer = async (playerId, playlistId) => {
-            var controller = null
-            window.onSpotifyIframeApiReady = (IFrameAPI) => {
-                const playerDiv = document.getElementById(playerId)
-                const playerUri = 'spotify:playlist:' + playlistId
-                console.log('Configuring to use player URI: ' + playerUri)
-                const options  = {
-                    uri: playerUri
+            if(window.spotifyController == null) {
+                window.onSpotifyIframeApiReady = (IFrameAPI) => {
+                    const playerDiv = document.getElementById(playerId)
+                    const playerUri = 'spotify:playlist:' + playlistId
+                    console.log('Configuring to use player URI: ' + playerUri)
+                    const options  = {
+                        uri: playerUri
+                    }
+                    const callback = (EmbedController) => {
+                        window.spotifyController = EmbedController
+                    }
+                    IFrameAPI.createController(playerDiv, options, callback)
                 }
-                const callback = (EmbedController) => {
-                    controller = EmbedController
-                }
-                IFrameAPI.createController(playerDiv, options, callback)
-            }
-            window.setDimensions = (width, height) => {
-                if(controller != null) {
-                    console.log('Finna update width=' + width + ' and height= ' + height)
-                    controller.setIframeDimensions(width, height)
+                window.setDimensions = (width, height) => {
+                    if(window.spotifyController != null) {
+                        console.log('Finna update width=' + width + ' and height= ' + height)
+                        window.spotifyController.setIframeDimensions(width, height)
+                    }
                 }
             }
         }

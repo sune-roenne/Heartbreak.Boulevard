@@ -1,0 +1,10 @@
+﻿.hbb-spotify-player {
+    background: radial-gradient(circle, rgba(113,119,156,0.4) 0%, rgba(63,156,213,0.01) 100%);
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}

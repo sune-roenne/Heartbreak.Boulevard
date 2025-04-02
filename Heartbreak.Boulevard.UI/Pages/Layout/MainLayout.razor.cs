@@ -8,11 +8,10 @@ namespace Heartbreak.Boulevard.UI.Pages.Layout;
 public partial class MainLayout
 {
     private HBBSession? _session;
+    private HBBCommunication? _communications;
 
     [Inject]
     public IHBBGitHubClient GithubClient { get; set; }
-
-    private HBBChapterEntry? _selectedChapter;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -21,53 +20,24 @@ public partial class MainLayout
             var loaded = await GithubClient.LoadChapterEntries();
             _session = new HBBSession(loaded);
         }
-    }
-
-    private void OnChapterSelected(HBBChapterEntry chapter)
-    {
-        _selectedChapter = chapter;
-        if(_selectedChapter.Specification.PlaylistId == null)
+        if(_communications == null)
         {
-            _playerIsEjected = null;
-            _playerIsOn = null;
-        }
-        InvokeAsync(StateHasChanged);
-    }
-
-    private void OnCloseClicked()
-    {
-        if (_selectedChapter != null)
-        {
-            _playerIsEjected = null;
-            _playerIsOn = null;
-            _selectedChapter = null;
-            InvokeAsync(StateHasChanged);
+            _communications = new HBBCommunication(
+                UpdateUI: () => InvokeAsync(StateHasChanged)
+            );
         }
     }
 
-    private bool PlayerCanPlay => _selectedChapter?.Specification?.PlaylistId != null;
+    private void OnChapterSelected(HBBChapterEntry chapter) =>
+        _communications!.CurrentChapterEntry = chapter;
 
-    private void OnPlayerEjectedChanged(bool? ejected)
-    {
-        _playerIsEjected = ejected;
-        InvokeAsync(StateHasChanged);
-    }
-    private void OnPlayerIsOnChanged(bool isOn)
-    {
-        _playerIsOn = isOn;
-        InvokeAsync(StateHasChanged);
-    }
-    private string? PlayerEjectionClass => _playerIsEjected switch
+    private void OnCloseClicked() => _communications!.CurrentChapterEntry = null;
+
+    private string? PlayerEjectionClass => _communications?.RadioIsEjected switch
     {
         null => null,
         true => "player-eject",
         false => "player-uneject"
     };
-
-
-    private bool? _playerIsEjected = null;
-    private bool? _playerIsOn = null;
-
-
 
 }
