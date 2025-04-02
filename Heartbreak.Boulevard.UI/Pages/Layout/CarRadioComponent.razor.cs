@@ -12,12 +12,17 @@ public partial class CarRadioComponent
     public Action<bool> OnPowerStatusChanged { get; set; }
 
     [Parameter]
-    public Action<bool> OnIsEjectedChanged { get; set; }
+    public Action<bool?> OnIsEjectedChanged { get; set; }
 
-    private bool? _isOn = null;
-    private bool _isEjected = false;
+    [Parameter]
+    public bool? IsOn { get; set; }
 
-    private string PowerButtonClass => _isOn switch
+
+    [Parameter]
+    public bool? IsEjected { get; set; }
+
+
+    private string PowerButtonClass => IsOn switch
     {
         null => "un-powered",
         true => "power-on",
@@ -29,8 +34,13 @@ public partial class CarRadioComponent
     {
         if (PlayerCanPlay)
         {
-            _isOn = _isOn?.Pipe(_ => !_) ?? true;
-            OnPowerStatusChanged(_isOn.Value);
+            IsOn = IsOn?.Pipe(_ => !_) ?? true;
+            OnPowerStatusChanged(IsOn.Value);
+            if(IsEjected == true && IsOn == false)
+            {
+                IsEjected = null;
+                OnIsEjectedChanged(null);
+            }
         }
     }
 
@@ -38,8 +48,8 @@ public partial class CarRadioComponent
     {
         if (PlayerCanPlay)
         {
-            _isEjected = !_isEjected;
-            OnIsEjectedChanged(_isEjected);
+            IsEjected = IsEjected?.Pipe(_ => !_) ?? true;
+            OnIsEjectedChanged(IsEjected.Value);
         }
     }
 

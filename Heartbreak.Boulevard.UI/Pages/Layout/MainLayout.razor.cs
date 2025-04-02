@@ -26,6 +26,11 @@ public partial class MainLayout
     private void OnChapterSelected(HBBChapterEntry chapter)
     {
         _selectedChapter = chapter;
+        if(_selectedChapter.Specification.PlaylistId == null)
+        {
+            _playerIsEjected = null;
+            _playerIsOn = null;
+        }
         InvokeAsync(StateHasChanged);
     }
 
@@ -33,6 +38,8 @@ public partial class MainLayout
     {
         if (_selectedChapter != null)
         {
+            _playerIsEjected = null;
+            _playerIsOn = null;
             _selectedChapter = null;
             InvokeAsync(StateHasChanged);
         }
@@ -40,7 +47,7 @@ public partial class MainLayout
 
     private bool PlayerCanPlay => _selectedChapter?.Specification?.PlaylistId != null;
 
-    private void OnPlayerEjectedChanged(bool ejected)
+    private void OnPlayerEjectedChanged(bool? ejected)
     {
         _playerIsEjected = ejected;
         InvokeAsync(StateHasChanged);
@@ -50,10 +57,16 @@ public partial class MainLayout
         _playerIsOn = isOn;
         InvokeAsync(StateHasChanged);
     }
+    private string? PlayerEjectionClass => _playerIsEjected switch
+    {
+        null => null,
+        true => "player-eject",
+        false => "player-uneject"
+    };
 
 
-    private bool _playerIsEjected = false;
-    private bool _playerIsOn = false;
+    private bool? _playerIsEjected = null;
+    private bool? _playerIsOn = null;
 
 
 

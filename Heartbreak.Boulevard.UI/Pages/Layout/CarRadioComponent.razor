@@ -12,7 +12,7 @@
         <button 
             class="hbb-layout-radio-eject-button" 
             type="button" 
-            disabled="@((_isOn??false) ? null : "disabled" )"
+            disabled="@((IsOn ?? false) ? null : "disabled" )"
             @onclick="@(() => OnEjectClick())"
         
         ></button>

@@ -1,10 +1,27 @@
 ﻿<div class="hbb-spotify-player">
-    <iframe style="border-radius:12px"
-            src="https://open.spotify.com/embed/playlist/@(PlaylistId)?utm_source=generator&theme=0"
-            width="100%"
-            height="152"
-            frameBorder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"></iframe>
+    <div id="@PlayerId"></div>
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+    <script>
+        window.initSpotifyPlayer = async (playerId, playlistId) => {
+            var controller = null
+            window.onSpotifyIframeApiReady = (IFrameAPI) => {
+                const playerDiv = document.getElementById(playerId)
+                const playerUri = 'spotify:playlist:' + playlistId
+                console.log('Configuring to use player URI: ' + playerUri)
+                const options  = {
+                    uri: playerUri
+                }
+                const callback = (EmbedController) => {
+                    controller = EmbedController
+                }
+                IFrameAPI.createController(playerDiv, options, callback)
+            }
+            window.setDimensions = (width, height) => {
+                if(controller != null) {
+                    console.log('Finna update width=' + width + ' and height= ' + height)
+                    controller.setIframeDimensions(width, height)
+                }
+            }
+        }
+    </script>
 </div>

@@ -7,15 +7,27 @@
     </div>
     <div class="hbb-layout-row" @onclick="@(() => OnCloseClicked())">
         <div class="hbb-layout-sidenav" @onclick:stopPropagation>
-            @if(_playerIsOn && _selectedChapter?.Specification?.PlaylistId != null) {
-                <div class="hbb-layout-player @(_playerIsEjected ? "player-ejected" : "player-not-ejected")">
-                    <SpotifyPlayerComponent PlaylistId="@_selectedChapter?.Specification?.PlaylistId"></SpotifyPlayerComponent>
+            @if((_playerIsOn ?? false) && _selectedChapter?.Specification?.PlaylistId != null) {
+                <div class="hbb-layout-player @(PlayerEjectionClass)">
+                    <SpotifyPlayerComponent 
+                        PlaylistId="@_selectedChapter?.Specification?.PlaylistId"
+                        InitDelay="TimeSpan.FromSeconds(1)"
+                        Height="1000"
+                        Width="@((_playerIsEjected ?? false) ? 250 : 0)"
+                    
+                    ></SpotifyPlayerComponent>
                 </div>
             }
             <div class="hbb-layout-sidenav-top-decor"></div>
             <div class="hbb-layout-sidenav-content">
                 <div class="hbb-layout-sidenav-radio-container">
-                    <CarRadioComponent OnIsEjectedChanged="OnPlayerEjectedChanged" OnPowerStatusChanged="OnPlayerIsOnChanged" PlayerCanPlay="PlayerCanPlay"></CarRadioComponent>
+                    <CarRadioComponent 
+                        OnIsEjectedChanged="OnPlayerEjectedChanged" 
+                        OnPowerStatusChanged="OnPlayerIsOnChanged" 
+                        PlayerCanPlay="PlayerCanPlay"
+                        IsEjected="_playerIsEjected"
+                        IsOn="_playerIsOn"
+                    ></CarRadioComponent>
                 </div>
 
                 <div class="hbb-layout-sidenav-chapters-container">
