@@ -146,6 +146,9 @@
     font-weight: 900;
     cursor: pointer;
     padding: 5px;
+    background-image: url('images/layout/chapter-text-background.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .hbb-layout-sidenav-bottom-decor {
