@@ -1,0 +1,56 @@
+﻿.hbb-shrapnel-of-love-container {
+    border: 1px solid rgb(233, 139, 139);
+    border-radius: 5px;
+    padding: 50px;
+}
+
+.hbb-shrapnel-line {
+    width: 100%;
+}
+
+.hbb-shrapnel-line td {
+    flex-direction: row;
+}
+
+.hbb-shrapnel-line-name-td {
+    font-weight: 900;
+    width: 15%;
+}
+
+.hbb-shrapnel-line-part-name-text {
+}
+
+.left-side .hbb-shrapnel-line-part-text-container {
+    text-align: left;
+    margin: auto auto auto 0px;
+}
+
+.right-side .hbb-shrapnel-line-part-text-container {
+    text-align: right;
+    margin: auto 0px auto auto;
+}
+
+
+.right-side .hbb-shrapnel-line-part-name-text {
+    text-align: right;
+    margin: auto 0px auto auto;
+}
+
+.hbb-shrapnel-line-part-description {
+    font-family: 'Ink Free';
+    font-style: italic;
+    color: rgb(12, 6, 86);
+}
+
+
+@media only screen and (max-width: 990px) {
+    .hbb-shrapnel-line-part-description {
+        margin-top: -3px;
+    }
+}
+
+@media only screen and (min-width: 990px) {
+    .hbb-shrapnel-line-part-description {
+        margin-top: -7px;
+    }
+}

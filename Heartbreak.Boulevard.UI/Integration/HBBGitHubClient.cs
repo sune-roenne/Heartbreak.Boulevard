@@ -3,6 +3,7 @@ using Booktex.Domain.Parsing;
 using Booktex.Domain.Util;
 using Heartbreak.Boulevard.UI.Configuration;
 using Heartbreak.Boulevard.UI.Integration.Story;
+using Heartbreak.Boulevard.UI.Story;
 using Microsoft.Extensions.Options;
 using Octokit;
 using System.IO.Compression;
@@ -98,7 +99,40 @@ public class HBBGitHubClient : IHBBGitHubClient
         Console.WriteLine($"Parsing: {relFile.FileName}");
         var fixedContent = FixNewLines(relFile.FileContent);
         var contents = WritingParser.ParseFileContents(fixedContent);
+        contents = AssembleShrapnel(contents);
         return contents;
+    }
+
+    private IReadOnlyCollection<BookChapterContent> AssembleShrapnel(IEnumerable<BookChapterContent> content)
+    {
+        var returnee = new List<BookChapterContent>();
+        var forShrapnel = new List<BookChapterContent>();
+        string? shrapnelName = null;
+        foreach (var contentItem in content)
+        {
+            if (contentItem is BookChapterSection sect)
+            {
+                if (forShrapnel.Any() && shrapnelName != null)
+                {
+                    returnee.Add(new ShrapnelOfLove(shrapnelName, forShrapnel.ToList()));
+                    forShrapnel.Clear();
+                    shrapnelName = null;
+                }
+                if (sect.Title.ToLower().Pipe(tit => tit.Contains("shrapnel") && tit.Contains('-')))
+                {
+                    var splitted = sect.Title.Split('-');
+                    shrapnelName = splitted[1].Trim();
+                }
+            }
+            else if (shrapnelName != null)
+                forShrapnel.Add(contentItem);
+            else 
+                returnee.Add(contentItem); 
+        }
+        if (forShrapnel.Any() && shrapnelName != null)
+            returnee.Add(new ShrapnelOfLove(shrapnelName, forShrapnel.ToList()));
+
+        return returnee;
     }
 
 

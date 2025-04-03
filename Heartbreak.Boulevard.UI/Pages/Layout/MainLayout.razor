@@ -1,4 +1,5 @@
-﻿@using Heartbreak.Boulevard.UI.Story
+﻿@using Heartbreak.Boulevard.UI.Components.Chapter
+@using Heartbreak.Boulevard.UI.Story
 @inherits LayoutComponentBase
 
 @if(_communications != null) {
@@ -49,6 +50,9 @@
                         <Booktex.Html.Story.StoryComponent Contents="_communications?.CurrentChapterEntry?.Content"
                                                            ChapterName="@(_communications?.CurrentChapterEntry?.Specification.ChapterName)"
                                                            BackgroundDeriver="QuoteBackgrounds.BackgroundFor">
+                                                           <AdditionalContentRenderer Context="cont">
+                                                               <AdditionalChapterContentComponent Content="cont"></AdditionalChapterContentComponent>
+                                                           </AdditionalContentRenderer>
                         </Booktex.Html.Story.StoryComponent>
                     </div>
 

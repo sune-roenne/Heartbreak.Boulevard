@@ -1,0 +1,69 @@
+﻿@using Booktex.Domain.Book.Model
+@using Heartbreak.Boulevard.UI.Story
+@if(Content is ShrapnelOfLove shrap) 
+{
+    <div class="hbb-shrapnel-of-love-container">
+        @foreach(var cont in shrap.Content) 
+        {
+            if(cont is BookDialog dialog) 
+            {
+                foreach(var ent in dialog.Entries) 
+                {
+                    <table class="hbb-shrapnel-line">
+                        <tbody>
+                            @if (ent.RightSide == null)
+                            {
+                                @foreach (var (linPart, lpIndx) in ent.Line.LineParts.Select((_, indx) => (_, indx)))
+                                {
+                                    <tr class="left-side">
+                                        <td class="hbb-shrapnel-line-name-td">
+                                            @if (lpIndx == 0)
+                                            {
+                                                <div class="hbb-shrapnel-line-name-text">@(ent.Line.Character.CharacterName)</div>
+                                            }
+                                        </td>
+                                        <td class="hbb-shrapnel-line-text-td">
+                                            <div class="hbb-shrapnel-line-part-text-container">
+                                                <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>
+                                                @if (linPart.Description != null)
+                                                {
+                                                    <div class="hbb-shrapnel-line-part-description">[@(linPart.Description)]</div>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                @foreach (var (linPart, lpIndx) in ent.Line.LineParts.Select((_, indx) => (_, indx)))
+                                {
+
+                                    <tr class="right-side">
+                                        <td class="hbb-shrapnel-line-text-td">
+                                            <div class="hbb-shrapnel-line-part-text-container">
+                                                <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>
+                                                @if (linPart.Description != null)
+                                                {
+                                                    <div class="hbb-shrapnel-line-part-description">[@(linPart.Description)]</div>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td class="hbb-shrapnel-line-name-td">
+                                            @if (lpIndx == 0)
+                                            {
+                                                <div class="hbb-shrapnel-line-part-name-text">@(ent.Line.Character.CharacterName)</div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                }
+            }
+        }
+
+    </div>
+}
