@@ -3,9 +3,18 @@
 @if(Content is ShrapnelOfLove shrap) 
 {
     <div class="hbb-shrapnel-of-love-container">
-        <div class="hbb-shrapnel-of-love-title">Shrapnel of Love</div>
-        <div class="hbb-shrapnel-of-love-subtitle">@(shrap.SubTitle)</div>
+        <div class="hbb-shrapnel-of-love-title-row">
+            <div class="hbb-shrapnel-of-love-title-container">
+                <div class="hbb-shrapnel-of-love-title">Shrapnel of Love</div>
+                <div class="hbb-shrapnel-of-love-subtitle">@(shrap.SubTitle)</div>
+            </div>
+            <div class="hbb-shrapnel-of-love-title-image">
+                <div class="hbb-shrapnel-of-love-title-image-frame"></div>
+                <div class="hbb-shrapnel-image hbb-shrapnel-image-@(shrap.ShrapnelNo)"></div>
+                <div class="hbb-shrapnel-of-love-title-image-glass"></div>
+            </div>
 
+        </div>
         @foreach(var cont in shrap.Content) 
         {
             if(cont is BookDialog dialog) 

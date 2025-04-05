@@ -6,7 +6,24 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0,0,0,0.1);
+}
+
+.hbb-layout::before {
+    position: absolute;
+    content: '';
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation-name: bgcolors;
+    animation-delay: 0s;
+    animation-duration: 40s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    background-size: cover;
+    background-image: url('images/layout/background-colors-3.webp');
+
 }
 
 .hbb-layout-topnav {
@@ -172,6 +189,9 @@
     background-image: url('images/layout/background.webp');
     background-size: 100%;
     background-repeat: no-repeat;
+    border-right: 20px solid rgb(30,30,30);
+    border-bottom: 20px solid rgb(60,60,60);
+    box-shadow: rgba(60,60,60,0.5) 50px 50px 50px 50px, rgba(60,60,60,0.3) 100px 100px 100px 100px;
 }
 
 .hbb-layout-row-fill {
@@ -250,4 +270,32 @@
     100% {
         width: 0px;
     }
+}
+
+
+
+@keyframes bgcolors {
+    0% {
+        filter: blur(20px) sepia(10%);
+    }
+    20% {
+        filter: blur(30px) sepia(5%);
+    }
+    35% {
+        filter: blur(20px) sepia(20%);
+    }
+    50% {
+        filter: blur(5px) sepia(70%);
+    }
+
+    65% {
+        filter: blur(30px) sepia(50%);
+    }
+    90% {
+        filter: blur(60px) sepia(40%);
+    }
+    100% {
+        filter: blur(40px) sepia(20%);
+    }
+
 }

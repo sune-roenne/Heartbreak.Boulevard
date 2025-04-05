@@ -7,5 +7,5 @@ public record ShrapnelOfLove(
     IReadOnlyCollection<BookChapterContent> Content
     ) : BookChapterContent
 {
-
+    public int ShrapnelNo { get; set; }
 }

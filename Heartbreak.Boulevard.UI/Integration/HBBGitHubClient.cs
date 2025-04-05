@@ -107,6 +107,7 @@ public class HBBGitHubClient : IHBBGitHubClient
     {
         var returnee = new List<BookChapterContent>();
         var forShrapnel = new List<BookChapterContent>();
+        var shrapnelNo = 0;
         string? shrapnelName = null;
         foreach (var contentItem in content)
         {
@@ -114,7 +115,8 @@ public class HBBGitHubClient : IHBBGitHubClient
             {
                 if (forShrapnel.Any() && shrapnelName != null)
                 {
-                    returnee.Add(new ShrapnelOfLove(shrapnelName, forShrapnel.ToList()));
+                    shrapnelNo += 1;
+                    returnee.Add(new ShrapnelOfLove(shrapnelName, forShrapnel.ToList()) { ShrapnelNo = shrapnelNo});
                     forShrapnel.Clear();
                     shrapnelName = null;
                 }
@@ -129,8 +131,9 @@ public class HBBGitHubClient : IHBBGitHubClient
             else 
                 returnee.Add(contentItem); 
         }
+        shrapnelNo += 1;
         if (forShrapnel.Any() && shrapnelName != null)
-            returnee.Add(new ShrapnelOfLove(shrapnelName, forShrapnel.ToList()));
+            returnee.Add(new ShrapnelOfLove(shrapnelName, forShrapnel.ToList()) { ShrapnelNo = shrapnelNo});
 
         return returnee;
     }
