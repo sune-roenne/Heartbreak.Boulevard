@@ -3,11 +3,41 @@
 @inherits LayoutComponentBase
 
 @if(_communications != null) {
+    if(_session != null) {
     <CascadingValue Value="_communications">
         <div class="page hbb-layout">
+            <div class="hbb-layout-bg-images">
+                <div class="hbb-layout-bg-image hbb-layout-bg-image-1"></div>
+                <div class="hbb-layout-bg-image hbb-layout-bg-image-2"></div>
+                <div class="hbb-layout-bg-image hbb-layout-bg-image-3"></div>
+                <div class="hbb-layout-bg-image hbb-layout-bg-image-4"></div>
+            </div>
             <div class="hbb-layout-topnav">
                 <div class="hbb-layout-logo"></div>
+                <div class="hbb-layout-sm-chapters-container">
+                    <button 
+                        type="button"
+                        class="hbb-layout-sm-chapters-button"
+                        @onclick="@(() => OnChaptersListButtonClicked())"
+                    >
+                    <p class="hbb-layout-sm-chapters-button-text">Chapters</p><i class="bi bi-list-check"></i>
+                    </button>
+                </div>
             </div>
+            @if(_showChapterList) {
+                <div class="hbb-layout-sm-chapter-list-container">
+                        @foreach (var chap in _session.Chapters)
+                        {
+                            <button class="hbb-layout-chapters-chap"
+                                    type="button"
+                                    @onclick="@(() => OnChapterSelected(chap))"
+                                    disabled="@(chap.Content == null ? "disabled" : null)">
+                                @(chap.Specification.ChapterName)
+                            </button>
+
+                        }
+                </div>
+            }
             <div class="hbb-layout-row" @onclick="@(() => OnCloseClicked())">
                 <div class="hbb-layout-sidenav" @onclick:stopPropagation>
                     <div class="hbb-layout-player @(PlayerEjectionClass)">
@@ -23,18 +53,15 @@
                         <div class="hbb-layout-sidenav-chapters-container">
                             <h1 class="hbb-layout-sidenav-chapters-header">CHAPTERS</h1>
                             <div class="hbb-layout-sidenav-chapters-list">
-                                @if (_session != null)
+                                @foreach (var chap in _session.Chapters)
                                 {
-                                    foreach (var chap in _session.Chapters)
-                                    {
-                                        <button class="hbb-layout-sidenav-chapters-chap"
-                                                type="button"
-                                                @onclick="@(() => OnChapterSelected(chap))"
-                                                disabled="@(chap.Content == null ? "disabled" : null)">
-                                            @(chap.Specification.ChapterName)
-                                        </button>
+                                    <button class="hbb-layout-chapters-chap"
+                                            type="button"
+                                            @onclick="@(() => OnChapterSelected(chap))"
+                                            disabled="@(chap.Content == null ? "disabled" : null)">
+                                        @(chap.Specification.ChapterName)
+                                    </button>
 
-                                    }
                                 }
                             </div>
                         </div>
@@ -83,5 +110,5 @@
         </div>
 
     </CascadingValue>
-
+    }
 }

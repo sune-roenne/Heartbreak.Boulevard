@@ -13,6 +13,8 @@ public partial class MainLayout
     [Inject]
     public IHBBGitHubClient GithubClient { get; set; }
 
+    private bool _showChapterList = false;
+
     protected override async Task OnParametersSetAsync()
     {
         if(_session == null)
@@ -28,8 +30,11 @@ public partial class MainLayout
         }
     }
 
-    private void OnChapterSelected(HBBChapterEntry chapter) =>
+    private void OnChapterSelected(HBBChapterEntry chapter)
+    {
+        _showChapterList = false;
         _communications!.CurrentChapterEntry = chapter;
+    }
 
     private void OnCloseClicked() => _communications!.CurrentChapterEntry = null;
 
@@ -39,5 +44,12 @@ public partial class MainLayout
         true => "player-eject",
         false => "player-uneject"
     };
+
+    private void OnChaptersListButtonClicked()
+    {
+        _showChapterList = !_showChapterList;
+        _ = InvokeAsync(StateHasChanged);
+    }
+
 
 }

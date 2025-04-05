@@ -37,3 +37,9 @@
     font-style: normal;
     src: url('fonts/DS-DIGI.TTF');
 }
+
+@font-face {
+    font-family: 'HbbElite';
+    src: url('fonts/SpecialElite-Regular.ttf');
+}
+
