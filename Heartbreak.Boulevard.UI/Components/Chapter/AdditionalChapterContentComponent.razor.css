@@ -1,7 +1,51 @@
 ﻿.hbb-shrapnel-of-love-container {
+
+}
+
+.hbb-shrapnel-of-love-title {
+
+}
+
+.hbb-shrapnel-of-love-subtitle
+
+.hbb-shrap-dialog {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: pinkbg;
+    animation-delay: 0s;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    z-index: 1;
     border: 1px solid rgb(233, 139, 139);
     border-radius: 5px;
     padding: 50px;
+}
+.hbb-shrap-dialog::before {
+    content: '';
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+
+.hbb-shrap-dialog-0::before {
+    background-image: url('images/story/shrapnel-background-1.webp');
+    background-position-x: -180px;
+    background-size: 150%;
+}
+.hbb-shrap-dialog-1:before {
+    background-image: url('images/story/shrapnel-background-2.webp');
+}
+.hbb-shrap-dialog-2:before {
+    background-image: url('images/story/shrapnel-background-3.webp');
+}
+.hbb-shrap-dialog-3:before {
+    background-image: url('images/story/shrapnel-background-4.webp');
 }
 
 .hbb-shrapnel-line {
@@ -53,4 +97,21 @@
     .hbb-shrapnel-line-part-description {
         margin-top: -7px;
     }
+}
+
+
+@keyframes pinkbg {
+    0% {
+        background-image: url('images/story/pink-background-1.webp');
+    }
+    35% {
+        background-image: url('images/story/pink-background-2.webp');
+    }
+    70% {
+        background-image: url('images/story/pink-background-3.webp');
+    }
+    100% {
+        background-image: url('images/story/pink-background-4.webp');
+    }
+
 }

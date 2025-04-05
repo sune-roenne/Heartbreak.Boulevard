@@ -3,65 +3,70 @@
 @if(Content is ShrapnelOfLove shrap) 
 {
     <div class="hbb-shrapnel-of-love-container">
-        @foreach(var cont in shrap.Content) 
+        <div class="hbb-shrapnel-of-love-title">Shrapnel of Love</div>
+        <div class="hbb-shrapnel-of-love-subtitle">@(shrap.SubTitle)</div>
+
+        @foreach(var (cont, indx) in shrap.Content.Select((_,indx) => (_,indx))) 
         {
             if(cont is BookDialog dialog) 
             {
-                foreach(var ent in dialog.Entries) 
-                {
-                    <table class="hbb-shrapnel-line">
-                        <tbody>
-                            @if (ent.RightSide == null)
-                            {
-                                @foreach (var (linPart, lpIndx) in ent.Line.LineParts.Select((_, indx) => (_, indx)))
+                <div class="hbb-shrap-dialog hbb-shrap-dialog-@(indx % 4)">
+                    @foreach(var ent in dialog.Entries) 
+                    {
+                        <table class="hbb-shrapnel-line">
+                            <tbody>
+                                @if (ent.RightSide == null)
                                 {
-                                    <tr class="left-side">
-                                        <td class="hbb-shrapnel-line-name-td">
-                                            @if (lpIndx == 0)
-                                            {
-                                                <div class="hbb-shrapnel-line-name-text">@(ent.Line.Character.CharacterName)</div>
-                                            }
-                                        </td>
-                                        <td class="hbb-shrapnel-line-text-td">
-                                            <div class="hbb-shrapnel-line-part-text-container">
-                                                <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>
-                                                @if (linPart.Description != null)
+                                    @foreach (var (linPart, lpIndx) in ent.Line.LineParts.Select((_, indx) => (_, indx)))
+                                    {
+                                        <tr class="left-side">
+                                            <td class="hbb-shrapnel-line-name-td">
+                                                @if (lpIndx == 0)
                                                 {
-                                                    <div class="hbb-shrapnel-line-part-description">[@(linPart.Description)]</div>
+                                                    <div class="hbb-shrapnel-line-name-text">@(ent.Line.Character.CharacterName)</div>
                                                 }
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="hbb-shrapnel-line-text-td">
+                                                <div class="hbb-shrapnel-line-part-text-container">
+                                                    <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>
+                                                    @if (linPart.Description != null)
+                                                    {
+                                                        <div class="hbb-shrapnel-line-part-description">[@(linPart.Description)]</div>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                @foreach (var (linPart, lpIndx) in ent.Line.LineParts.Select((_, indx) => (_, indx)))
+                                else
                                 {
+                                    @foreach (var (linPart, lpIndx) in ent.Line.LineParts.Select((_, indx) => (_, indx)))
+                                    {
 
-                                    <tr class="right-side">
-                                        <td class="hbb-shrapnel-line-text-td">
-                                            <div class="hbb-shrapnel-line-part-text-container">
-                                                <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>
-                                                @if (linPart.Description != null)
+                                        <tr class="right-side">
+                                            <td class="hbb-shrapnel-line-text-td">
+                                                <div class="hbb-shrapnel-line-part-text-container">
+                                                    <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>
+                                                    @if (linPart.Description != null)
+                                                    {
+                                                        <div class="hbb-shrapnel-line-part-description">[@(linPart.Description)]</div>
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td class="hbb-shrapnel-line-name-td">
+                                                @if (lpIndx == 0)
                                                 {
-                                                    <div class="hbb-shrapnel-line-part-description">[@(linPart.Description)]</div>
+                                                    <div class="hbb-shrapnel-line-part-name-text">@(ent.Line.Character.CharacterName)</div>
                                                 }
-                                            </div>
-                                        </td>
-                                        <td class="hbb-shrapnel-line-name-td">
-                                            @if (lpIndx == 0)
-                                            {
-                                                <div class="hbb-shrapnel-line-part-name-text">@(ent.Line.Character.CharacterName)</div>
-                                            }
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
-                }
+                    }
+                </div>
             }
         }
 
