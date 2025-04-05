@@ -9,6 +9,15 @@
                 <div class="radio-on-text">Radio is on</div>
             }
             else {
+                <div class="radio-signal-info">
+                    @if(Communications.CanPlayRadio) {
+                        <div class="radio-signal-available"><p>Signal available</p><i class="bi bi-broadcast"></i></div>
+                    }
+                    else {
+                        <div class="radio-no-signal"><p>No signal</p><div class="radio-no-signal-icons"><i class="bi bi-slash-circle" style="z-index: 1;"></i><i class="bi bi-broadcast" style="z-index: 0;"></i> </div></div>
+
+                    }
+                </div>
                 <div class="radio-off-text">Radio is off</div>
             }
         </div>

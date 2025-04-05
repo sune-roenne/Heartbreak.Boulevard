@@ -33,6 +33,7 @@
 
 
 .hbb-layout-radio-display {
+    position: relative;
     width: 200px;
     aspect-ratio: 206/64;
     background-image: url('images/layout/car-stereo-display.webp');
@@ -45,15 +46,71 @@
 }
 
 .radio-on-text {
-    padding-top: 20px;
-    padding-left: 50px;
+    position: absolute;
+    top: 20px;
+    left: 50px;
     color: rgb(45, 174, 20);
 }
 .radio-off-text {
-    padding-top: 20px;
-    padding-left: 50px;
+    position: absolute;
+    top: 25px;
+    left: 40px;
     color: rgba(208, 27, 27, 0.91);
 }
+
+
+
+.radio-signal-info {
+    position: absolute;
+    margin-top: 5px;
+    margin-right: 20px;
+    font-size: 6pt;
+    color: rgba(208, 27, 27, 0.91);
+    animation: 2s linear 0s infinite alternate signalavail;
+    width: 170px;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.radio-signal-info div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 10px;
+}
+.radio-no-signal-icons {
+    position: relative;
+    top: 6px;
+    left: 5px;
+    content: '';
+    width: 15px;
+    height: 15px;
+}
+
+.radio-no-signal-icons i {
+    position: absolute;
+    content: '';
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.radio-signal-available {
+    color: rgb(45, 174, 20);
+}
+
+.radio-signal-available i {
+    position: relative;
+    top: 7px;
+    left: 5px;
+    content: '';
+    width: 15px;
+    height: 15px;
+}
+
+
 .hbb-layout-radio-buttons-container {
     width: 100%;
     display: flex;
@@ -118,5 +175,26 @@
     100% {
         background-image: url('images/layout/car-stereo-power-button-off.webp');
     }
+
+}
+
+@keyframes signalavail {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+
+
 
 }
