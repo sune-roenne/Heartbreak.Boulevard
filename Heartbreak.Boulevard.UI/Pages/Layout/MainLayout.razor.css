@@ -32,8 +32,8 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        width: 900px;
-        height: 8000px;
+        width: 100%;
+        aspect-ratio: 900/8000;
         display: flex;
         flex-direction: column;
     }
@@ -95,10 +95,10 @@
 
     .hbb-layout-logo {
         position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
+        top: 20px;
+        left: 130px;
+        width: 250px;
+        height: 100px;
         z-index: 1;
     }
 
@@ -110,11 +110,11 @@
         width: 100%;
         height: 100%;
         z-index: 0;
-        background-image: url('images/layout/logo.webp');
+        background-image: url('images/layout/logo-sm.webp');
         background-size: 70%;
         background-repeat: no-repeat;
-        background-position-x: 100px;
-        background-position-y: 30px;
+        background-position-x: 50px;
+        background-position-y: 5px;
     }
 
     .hbb-layout-sm-chapters-container {
@@ -241,6 +241,8 @@
         top: 0px;
         left: 10px;
         padding: 0px;
+        max-width: 110vw;
+        overflow-x: hidden;
     }
 
     @keyframes smbgcolor {

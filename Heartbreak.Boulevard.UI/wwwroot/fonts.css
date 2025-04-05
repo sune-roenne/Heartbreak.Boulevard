@@ -43,3 +43,7 @@
     src: url('fonts/SpecialElite-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'HbbInkFree';
+    src: url('fonts/Inkfree.ttf');
+}
