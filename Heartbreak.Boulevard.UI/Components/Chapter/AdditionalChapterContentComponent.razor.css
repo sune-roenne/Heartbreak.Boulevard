@@ -1,12 +1,29 @@
 ﻿.hbb-shrapnel-of-love-container {
-
+    font-family: 'HbbMerienda';
+    font-size: 11pt;
 }
 
 .hbb-shrapnel-of-love-title {
-
+    font-family: 'HbbGloria';
+    font-size: 30pt;
+    font-weight: 500;
+    width: 100%;
+    transform: rotate(-10deg);
+    text-align: center;
+    color: rgb(144, 12, 40);
 }
 
-.hbb-shrapnel-of-love-subtitle
+.hbb-shrapnel-of-love-subtitle {
+    font-family: 'HbbGloria';
+    font-size: 16pt;
+    font-weight: 900;
+    width: 100%;
+    text-align: center;
+    transform: rotate(-10deg);
+    color: rgb(26, 8, 12, 0,91);
+    margin-top: -20px;
+    margin-bottom: 50px;
+}
 
 .hbb-shrap-dialog {
     position: relative;
@@ -18,10 +35,27 @@
     animation-iteration-count: infinite;
     animation-direction: alternate;
     z-index: 1;
-    border: 1px solid rgb(233, 139, 139);
+    border: 1px solid rgba(233, 139, 139,0.3);
+    box-shadow: rgba(233, 139, 139,0.1) 0px 0px 6px 6px;
     border-radius: 5px;
     padding: 50px;
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
+
+.hbb-shrap-dialog-0 {
+    transform: rotate(-0.4deg);
+}
+.hbb-shrap-dialog-1 {
+    transform: rotate(0.6deg);
+}
+.hbb-shrap-dialog-2 {
+    transform: rotate(-0.6deg);
+}
+.hbb-shrap-dialog-3 {
+    transform: rotate(0.4deg);
+}
+
 .hbb-shrap-dialog::before {
     content: '';
     left: 0px;
@@ -40,9 +74,13 @@
 }
 .hbb-shrap-dialog-1:before {
     background-image: url('images/story/shrapnel-background-2.webp');
+    background-size: 150%;
+    background-position-x: -180px;
 }
 .hbb-shrap-dialog-2:before {
     background-image: url('images/story/shrapnel-background-3.webp');
+    background-size: 150%;
+    background-position-x: -180px;
 }
 .hbb-shrap-dialog-3:before {
     background-image: url('images/story/shrapnel-background-4.webp');

@@ -39,8 +39,21 @@
     background-size: 100%;
     background-repeat: no-repeat;
     margin-bottom: 10px;
+    font-family: 'HbbDigital';
+    font-size: 16pt;
+    font-weight: 500;
 }
 
+.radio-on-text {
+    padding-top: 20px;
+    padding-left: 50px;
+    color: rgb(45, 174, 20);
+}
+.radio-off-text {
+    padding-top: 20px;
+    padding-left: 50px;
+    color: rgba(208, 27, 27, 0.91);
+}
 .hbb-layout-radio-buttons-container {
     width: 100%;
     display: flex;

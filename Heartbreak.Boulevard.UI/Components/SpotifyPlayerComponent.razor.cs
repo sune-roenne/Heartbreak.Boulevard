@@ -50,7 +50,7 @@ public partial class SpotifyPlayerComponent : IDisposable
         {
             _didInitPlayer = true;
             await JS.InvokeVoidAsync("initSpotifyPlayer", PlayerId);
-            await JS.InvokeVoidAsync("setDimensions", ExpandedWidth, Height);
+            await JS.InvokeVoidAsync("setDimensions", 0, Height);
 
         }
     }

@@ -6,11 +6,11 @@
         <div class="hbb-shrapnel-of-love-title">Shrapnel of Love</div>
         <div class="hbb-shrapnel-of-love-subtitle">@(shrap.SubTitle)</div>
 
-        @foreach(var (cont, indx) in shrap.Content.Select((_,indx) => (_,indx))) 
+        @foreach(var cont in shrap.Content) 
         {
             if(cont is BookDialog dialog) 
             {
-                <div class="hbb-shrap-dialog hbb-shrap-dialog-@(indx % 4)">
+                <div class="hbb-shrap-dialog hbb-shrap-dialog-@(NextDialogIndex())">
                     @foreach(var ent in dialog.Entries) 
                     {
                         <table class="hbb-shrapnel-line">
@@ -35,6 +35,7 @@
                                                     }
                                                 </div>
                                             </td>
+                                            <td class="hbb-shrapnel-line-name-td"></td>
                                         </tr>
                                     }
                                 }
@@ -44,6 +45,7 @@
                                     {
 
                                         <tr class="right-side">
+                                            <td class="hbb-shrapnel-line-name-td"></td>
                                             <td class="hbb-shrapnel-line-text-td">
                                                 <div class="hbb-shrapnel-line-part-text-container">
                                                     <div class="hbb-shrapnel-line-part-text">@(linPart.PartText)</div>

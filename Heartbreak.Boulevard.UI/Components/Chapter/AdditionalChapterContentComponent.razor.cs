@@ -8,5 +8,10 @@ public partial class AdditionalChapterContentComponent
     [Parameter]
     public BookChapterContent Content { get; set; }
 
-
+    private int _dialogIndx = 0;
+    private int NextDialogIndex()
+    {
+        _dialogIndx = (_dialogIndx + 1) % 4;
+        return _dialogIndx;
+    }
 }

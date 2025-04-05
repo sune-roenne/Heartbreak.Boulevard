@@ -16,3 +16,24 @@
     font-style: normal;
     src: url('fonts/SHOWG.TTF');
 }
+
+@font-face {
+    font-family: 'HbbMerienda';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/Merienda-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'HbbGloria';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/GLORIAHALLELUJAH-REGULAR.TTF');
+}
+
+@font-face {
+    font-family: 'HbbDigital';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/DS-DIGI.TTF');
+}

@@ -5,6 +5,12 @@
     }
     <div class="hbb-layout-radio-content">
         <div class="hbb-layout-radio-display">
+            @if(Communications.RadioIsOn ?? false) {
+                <div class="radio-on-text">Radio is on</div>
+            }
+            else {
+                <div class="radio-off-text">Radio is off</div>
+            }
         </div>
         <div class="hbb-layout-radio-buttons-container">
             <button class="hbb-layout-radio-power-button @PowerButtonClass"
