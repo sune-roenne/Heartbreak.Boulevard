@@ -11,7 +11,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 builder.Configuration.AddJsonFile("appsettings.local.json", optional: true);
 builder.Configuration.AddEnvironmentVariables();
 builder.Services.Configure<HBBConfiguration>(builder.Configuration.GetSection(HBBConfiguration.ConfigurationElementName));
-
+var appConfig = new HBBConfiguration();
+builder.Configuration.GetSection(HBBConfiguration.ConfigurationElementName).Bind(appConfig);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -36,5 +37,9 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
+if (!string.IsNullOrEmpty(appConfig.HostingBasePath))
+    app.MapBlazorHub("/" + appConfig.HostingBasePath)
+    .WithOrder(-1);
 
 app.Run();

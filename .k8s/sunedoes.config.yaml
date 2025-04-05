@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: sunedoes-config
-data:
-  SuneDoes.BasePath: sune-does
-  Email.VerifyEmailUrl: https://eutonies.com/sune-does/verify-email
