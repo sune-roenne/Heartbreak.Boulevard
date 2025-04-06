@@ -1,4 +1,5 @@
-﻿using Heartbreak.Boulevard.UI.Integration.Story;
+﻿using Heartbreak.Boulevard.UI.Components.Board;
+using Heartbreak.Boulevard.UI.Integration.Story;
 
 namespace Heartbreak.Boulevard.UI.Pages.Layout;
 
@@ -10,6 +11,7 @@ public record HBBCommunication(
     public event EventHandler<bool?> OnRadioPowerIsOnChanged;
     public event EventHandler<bool?> OnRadioIsEjectedChanged;
     public event EventHandler<HBBChapterEntry?> OnChapterSelectionChanged;
+    public event EventHandler<HBBPostItContent?> OnPostItSelectionChanged;
 
 
     private bool? _radioIsOn = null;
@@ -73,5 +75,22 @@ public record HBBCommunication(
 
     public bool CanPlayRadio => CurrentPlaylistId != null;
     public bool CanEjectRadio => CanPlayRadio && _radioIsOn == true;
+
+    private HBBPostItContent? _currentPostIt;
+
+    public void ChangeSelectedPostIt(HBBPostItContent? postIt)
+    {
+        var callUpdate =
+            ((postIt == null) != (_currentPostIt == null)) ||
+            (postIt != null && _currentPostIt != null && postIt.ContentId != _currentPostIt.ContentId);
+        _currentPostIt = postIt;
+        if (callUpdate)
+        {
+            OnPostItSelectionChanged?.Invoke(this, _currentPostIt);
+            UpdateUI();
+        }
+    }
+
+
 
 }

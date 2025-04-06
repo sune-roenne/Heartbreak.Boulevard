@@ -1,14 +1,16 @@
-﻿using Heartbreak.Boulevard.UI.Integration;
+﻿using Heartbreak.Boulevard.UI.Components.Board;
+using Heartbreak.Boulevard.UI.Integration;
 using Heartbreak.Boulevard.UI.Integration.Story;
 using Heartbreak.Boulevard.UI.Session;
 using Microsoft.AspNetCore.Components;
 
 namespace Heartbreak.Boulevard.UI.Pages.Layout;
 
-public partial class MainLayout
+public partial class MainLayout : IDisposable
 {
     private HBBSession? _session;
     private HBBCommunication? _communications;
+    private HBBPostItContent? _selectedPostIt = new HBBPostItContent("Title", ContentType: PostItContentType.OtherEvent, 4, [], [], [], []);
 
     [Inject]
     public IHBBGitHubClient GithubClient { get; set; }
@@ -27,6 +29,7 @@ public partial class MainLayout
             _communications = new HBBCommunication(
                 UpdateUI: () => InvokeAsync(StateHasChanged)
             );
+            _communications.OnPostItSelectionChanged += OnPostItSelectionChanged;
         }
     }
 
@@ -56,5 +59,17 @@ public partial class MainLayout
         _communications!.CurrentChapterEntry = null;
     }
 
+    private void OnPostItSelectionChanged(object? sender, HBBPostItContent? newContent)
+    {
+        _selectedPostIt = newContent;
+    }
 
+
+    public void Dispose()
+    {
+        if(_communications != null)
+        {
+            _communications.OnPostItSelectionChanged -= OnPostItSelectionChanged;
+        }
+    }
 }

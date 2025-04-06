@@ -1,0 +1,28 @@
+﻿<div class="hbb-board-postit-backdrop @BackdropClass" @onclick="OnBackdropClicked">
+    <div class="hbb-board-postit @PostItClass" @onclick:stopPropagation>
+        <div class="hbb-board-postit-container">
+            @if(IsInHand) {
+                <div class="@UnderfingerClass"></div>
+            }
+            <div class="hbb-board-postit-background-container">
+                <div class="@BackgroundClass"></div>
+                <div class="hbb-board-postit-color-overlay" style="background-image: url('@ColorImage');"></div>
+
+            </div>
+            <div class="hbb-board-postit-rotation-container-@(PostItNoToUse)">
+                <div class="@ContentClass">
+                    <div class="hbb-board-postit-cont-title">@(Content.Title)</div>
+                    <div class="hbb-board-postit-cont-body"></div>
+                    <div class="hbb-board-postit-cont-footer"></div>
+                </div>
+
+            </div>
+            @if (IsInHand)
+            {
+                <div class="@ThumbClass"></div>
+            }
+
+
+        </div>
+    </div>
+</div>

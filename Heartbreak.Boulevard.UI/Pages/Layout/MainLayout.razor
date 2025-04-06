@@ -1,10 +1,17 @@
-﻿@using Heartbreak.Boulevard.UI.Components.Chapter
+﻿@using Heartbreak.Boulevard.UI.Components.Board
+@using Heartbreak.Boulevard.UI.Components.Chapter
 @using Heartbreak.Boulevard.UI.Story
 @inherits LayoutComponentBase
 
 @if(_communications != null) {
     if(_session != null) {
     <CascadingValue Value="_communications">
+        @if(_selectedPostIt != null) 
+        {
+            <div class="hbb-layout-postit">
+                <PostItComponent Content="_selectedPostIt" IsInHand="true"></PostItComponent>
+            </div>
+        }
         <div class="page hbb-layout">
             <div class="hbb-layout-bg-images">
                 <div class="hbb-layout-bg-image hbb-layout-bg-image-1"></div>

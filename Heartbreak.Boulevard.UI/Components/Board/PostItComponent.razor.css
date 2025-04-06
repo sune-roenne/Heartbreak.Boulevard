@@ -1,0 +1,248 @@
+﻿.hbb-board-postit-backdrop-hand {
+    position: absolute;
+    z-index: 10000;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px) grayscale(0.4);
+    cursor: pointer;
+    background-color: rgba(100,100,100,0.5);
+}
+
+.hbb-board-postit {
+    position: absolute;
+    z-index: 10000;
+    aspect-ratio: 1 / 1;
+    cursor: default;
+    font-family: 'HbbInkFree';
+}
+.hbb-board-postit-hand {
+    left: 10%;
+    top: 10%;
+}
+.hbb-board-postit-container {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+
+.hbb-board-postit-background-container {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+[class^="hbb-board-postit-bg"] {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    &::before
+    {
+        content: '';
+        position: absolute;
+        z-index: 4;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        opacity: 0.3;
+
+    }
+}
+.hbb-board-postit-bg-hand-1::before
+{   
+    background-image: url('images/board/postit-hand-1.webp');
+}
+.hbb-board-postit-bg-hand-2::before {
+    background-image: url('images/board/postit-hand-2.webp');
+}
+.hbb-board-postit-bg-hand-3::before {
+    background-image: url('images/board/postit-hand-3.webp');
+}
+.hbb-board-postit-bg-hand-4::before {
+    background-image: url('images/board/postit-hand-4.webp');
+}
+hbb-board-postit-bg-board-1::before {
+    background-image: url('images/board/postit-board-1.webp');
+}
+.hbb-board-postit-bg-board-2::before {
+    background-image: url('images/board/postit-board-2.webp');
+}
+.hbb-board-postit-bg-board-3::before {
+    background-image: url('images/board/postit-board-3.webp');
+}
+.hbb-board-postit-bg-board-4::before {
+    background-image: url('images/board/postit-board-4.webp');
+}
+
+
+[class^="hbb-board-postit-rotation-container"] {
+    content: '';
+    position: absolute;
+}
+.hbb-board-postit-rotation-container-1 {
+    transform: rotate(-1.8deg);
+    left: 4.8%;
+    top: 6.8%;
+    width: 89%;
+    height: 89%;
+}
+
+.hbb-board-postit-rotation-container-2 {
+    transform: rotate(-8deg);
+    left: 8.8%;
+    top: 9.4%;
+    width: 83%;
+    height: 80%;
+}
+
+.hbb-board-postit-rotation-container-3 {
+    transform: rotate(4.9deg);
+    left: 5.8%;
+    top: 6%;
+    width: 87%;
+    height: 88%;
+}
+
+.hbb-board-postit-rotation-container-4 {
+    transform: rotate(4deg);
+    left: 4%;
+    top: 4.9%;
+    width: 87%;
+    height: 88%;
+}
+
+.hbb-board-postit-color-overlay {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+[class^="hbb-board-postit-content"] {
+    display: flex;
+    flex-direction: row;
+}
+
+.hbb-board-postit-cont-title {
+    font-weight: 900;
+    width: 50%;
+    text-align: center;
+    margin-left: 20%;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
+
+
+
+[class^="hbb-board-postit-underfinger"] {
+    position: absolute;
+    z-index: 0;
+    width: 30%;
+    height: 30%;
+    background-image: url('images/board/postit-underfinger.webp');
+    background-size: 100% 100%;
+}
+.hbb-board-postit-underfinger-1 {
+    transform: rotate(-20deg);
+    left: 40%;
+    bottom: -13%;
+}
+
+.hbb-board-postit-underfinger-2 {
+    transform: rotate(-20deg);
+    left: 42%;
+    bottom: -4%;
+}
+
+.hbb-board-postit-underfinger-3 {
+    left: 20%;
+    bottom: -8%;
+}
+
+.hbb-board-postit-underfinger-4 {
+    transform: rotate(-10deg);
+    left: 25%;
+    bottom: -9%;
+}
+
+
+[class^="hbb-board-postit-thumb"] {
+    position: absolute;
+    z-index: 20;
+    width: 30%;
+    height: 30%;
+    background-image: url('images/board/postit-thumb.webp');
+    background-size: 100% 100%;
+}
+
+.hbb-board-postit-thumb-1 {
+    transform: rotate(-30deg);
+    left: 40%;
+    bottom: -10%;
+}
+
+.hbb-board-postit-thumb-2 {
+    transform: rotate(-40deg);
+    left: 45%;
+    bottom: -8%;
+}
+
+.hbb-board-postit-thumb-3 {
+    left: 20%;
+    bottom: -10%;
+}
+
+.hbb-board-postit-thumb-4 {
+    transform: rotate(-10deg);
+    left: 25%;
+    bottom: -8%;
+}
+
+@media only screen and (max-width: 990px) {
+    .hbb-board-postit-hand {
+        width: 350px;
+    }
+
+    [class^="hbb-board-postit-content"] {
+        padding: 20px;
+    }
+    .hbb-board-postit-cont-title {
+        font-size: 20pt;
+        border-bottom-width: 3px;
+    }
+
+}
+@media only screen and (min-width: 990px) {
+    .hbb-board-postit-hand {
+        width: 700px;
+    }
+    [class^="hbb-board-postit-content"] {
+        padding: 20px;
+    }
+    .hbb-board-postit-cont-title {
+        font-size: 30pt;
+        border-bottom-width: 4px;
+    }
+
+
+}
