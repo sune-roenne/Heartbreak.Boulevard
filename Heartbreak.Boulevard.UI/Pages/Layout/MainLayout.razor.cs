@@ -10,7 +10,7 @@ public partial class MainLayout : IDisposable
 {
     private HBBSession? _session;
     private HBBCommunication? _communications;
-    private HBBPostItContent? _selectedPostIt = new HBBPostItContent("Title", ContentType: PostItContentType.OtherEvent, 4, [], [], [], []);
+    private HBBPostItContent? _selectedPostIt;// = new HBBPostItContent("Title", ContentType: PostItContentType.OtherEvent, 4, [], [], [], []);
 
     [Inject]
     public IHBBGitHubClient GithubClient { get; set; }
