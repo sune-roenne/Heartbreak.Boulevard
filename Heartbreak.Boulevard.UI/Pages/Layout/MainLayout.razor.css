@@ -102,6 +102,18 @@
         z-index: 1;
     }
 
+    .hbb-layout-sm-logo-close-reader-button {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: transparent;
+        border: none;
+    }
+
+
+
     .hbb-layout-logo::before {
         content: '';
         position: absolute;
@@ -142,7 +154,7 @@
         margin-top: -10px;
     }
     .hbb-layout-sm-chapter-list-container {
-        position: fixed;
+        position: absolute;
         z-index: 100;
         top: 118px;
         left: 16px;

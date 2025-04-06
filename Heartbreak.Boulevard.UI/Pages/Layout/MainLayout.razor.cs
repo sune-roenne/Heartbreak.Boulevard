@@ -51,5 +51,10 @@ public partial class MainLayout
         _ = InvokeAsync(StateHasChanged);
     }
 
+    private void CloseReader()
+    {
+        _communications!.CurrentChapterEntry = null;
+    }
+
 
 }

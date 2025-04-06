@@ -35,7 +35,7 @@
 
 .hbb-shrap-dialog {
     position: relative;
-    background-size: cover;
+    background-size: 150% 150%;
     background-repeat: no-repeat;
     animation-name: pinkbg;
     animation-delay: 0s;
@@ -56,19 +56,35 @@
     background-repeat: no-repeat;
 }
 
+.hbb-shrap-dialog-0 {
+    background-image: url('images/story/shrapnel/pink-background-1.webp');
+}
+
+.hbb-shrap-dialog-1 {
+    background-image: url('images/story/shrapnel/pink-background-2.webp');
+}
+
+.hbb-shrap-dialog-2 {
+    background-image: url('images/story/shrapnel/pink-background-3.webp');
+}
+
+.hbb-shrap-dialog-3 {
+    background-image: url('images/story/shrapnel/pink-background-4.webp');
+}
+
 .hbb-shrap-dialog-0::before {
     background-image: url('images/story/shrapnel/shrapnel-background-1.webp');
     background-size: 150%;
 }
-.hbb-shrap-dialog-1:before {
+.hbb-shrap-dialog-1::before {
     background-image: url('images/story/shrapnel/shrapnel-background-2.webp');
     background-size: 150%;
 }
-.hbb-shrap-dialog-2:before {
+.hbb-shrap-dialog-2::before {
     background-image: url('images/story/shrapnel/shrapnel-background-3.webp');
     background-size: 150%;
 }
-.hbb-shrap-dialog-3:before {
+.hbb-shrap-dialog-3::before {
     background-image: url('images/story/shrapnel/shrapnel-background-4.webp');
 }
 
@@ -327,16 +343,20 @@
 
 @keyframes pinkbg {
     0% {
-        background-image: url('images/story/shrapnel/pink-background-1.webp');
+        background-position-x: -100px;
+        background-position-y: -10px;
     }
     35% {
-        background-image: url('images/story/shrapnel/pink-background-2.webp');
+        background-position-x: -50px;
+        background-position-y: -100px;
     }
     70% {
-        background-image: url('images/story/shrapnel/pink-background-3.webp');
+        background-position-x: 0px;
+        background-position-y: -50px;
     }
     100% {
-        background-image: url('images/story/shrapnel/pink-background-4.webp');
+        background-position-x: 0px;
+        background-position-y: 0px;
     }
 
 }

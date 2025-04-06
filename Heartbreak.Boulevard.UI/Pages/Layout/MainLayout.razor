@@ -13,7 +13,13 @@
                 <div class="hbb-layout-bg-image hbb-layout-bg-image-4"></div>
             </div>
             <div class="hbb-layout-topnav">
-                <div class="hbb-layout-logo"></div>
+                <div class="hbb-layout-logo">
+                    <button 
+                        type="button"
+                        class="hbb-layout-sm-logo-close-reader-button"
+                        @onclick="@(() => CloseReader())"
+                    ></button>
+                </div>
                 <div class="hbb-layout-sm-chapters-container">
                     <button 
                         type="button"
