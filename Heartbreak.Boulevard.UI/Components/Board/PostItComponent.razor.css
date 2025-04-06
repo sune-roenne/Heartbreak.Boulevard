@@ -5,9 +5,9 @@
     top: 0%;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(10px) grayscale(0.4);
+    backdrop-filter: blur(10px) grayscale(0.6);
     cursor: pointer;
-    background-color: rgba(100,100,100,0.5);
+    background-color: rgba(100,100,100,0.8);
 }
 
 .hbb-board-postit {
@@ -65,16 +65,16 @@
 }
 .hbb-board-postit-bg-hand-1::before
 {   
-    background-image: url('images/board/postit-hand-1.webp');
+    background-image: url('images/board/postit-board-1.webp');
 }
 .hbb-board-postit-bg-hand-2::before {
-    background-image: url('images/board/postit-hand-2.webp');
+    background-image: url('images/board/postit-board-2.webp');
 }
 .hbb-board-postit-bg-hand-3::before {
-    background-image: url('images/board/postit-hand-3.webp');
+    background-image: url('images/board/postit-board-3.webp');
 }
 .hbb-board-postit-bg-hand-4::before {
-    background-image: url('images/board/postit-hand-4.webp');
+    background-image: url('images/board/postit-board-4.webp');
 }
 hbb-board-postit-bg-board-1::before {
     background-image: url('images/board/postit-board-1.webp');
