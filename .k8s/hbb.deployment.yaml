@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hbb
-        image: docker.io/library/hbb:1.0.43
+        image: docker.io/library/hbb:1.0.2
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
@@ -27,7 +27,7 @@ spec:
                configMapKeyRef:
                  name: hbb-config
                  key: Hbb.BasePath
-           - name: GitHubToken
+           - name: Hbb__GitHubToken
              valueFrom:
                secretKeyRef:
                  name: sunedoes-secrets
