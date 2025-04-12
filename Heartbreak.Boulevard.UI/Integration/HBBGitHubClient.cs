@@ -1,4 +1,5 @@
 ﻿using Booktex.Domain.Book.Model;
+using Booktex.Domain.Book.Specials;
 using Booktex.Domain.Parsing;
 using Booktex.Domain.Util;
 using Heartbreak.Boulevard.UI.Configuration;
@@ -80,7 +81,9 @@ public class HBBGitHubClient : IHBBGitHubClient
                 Content: ParseContentFor(_, files)
                 )
             ).OrderBy(_ => _.Specification.OrderKey)
+            .Pipe(Aggregate)
             .ToList();
+
         return entries;
     }
 
@@ -96,11 +99,29 @@ public class HBBGitHubClient : IHBBGitHubClient
             .FirstOrDefault(_ => _.FileName.ToLower().Trim() == spec.FileName.ToLower().Trim());
         if (relFile == null)
             return null;
-        Console.WriteLine($"Parsing: {relFile.FileName}");
-        var fixedContent = FixNewLines(relFile.FileContent);
-        var contents = WritingParser.ParseFileContents(fixedContent);
-        contents = AssembleShrapnel(contents);
-        return contents;
+        if(spec.IsPsychFile)
+        {
+            Console.WriteLine($"Parsing psych file: {relFile.FileName}");
+            try
+            {
+                var log = PsychLogParser.Parse(relFile.FileContent);
+                var ret = new PsychDebrief(log);
+                return [ret];
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+
+        }
+        else
+        {
+            Console.WriteLine($"Parsing: {relFile.FileName}");
+            var fixedContent = FixNewLines(relFile.FileContent);
+            var contents = WritingParser.ParseFileContents(fixedContent);
+            contents = AssembleShrapnel(contents);
+            return contents;
+        }
     }
 
     private IReadOnlyCollection<BookChapterContent> AssembleShrapnel(IEnumerable<BookChapterContent> content)
@@ -208,4 +229,38 @@ public class HBBGitHubClient : IHBBGitHubClient
         }
         return returnee.ToString();
     }
+
+    private static IReadOnlyCollection<HBBChapterEntry> Aggregate(IEnumerable<HBBChapterEntry> chapters)
+    {
+        var returnee = new List<HBBChapterEntry>();
+        HBBChapterEntry? carryOver = null;
+        foreach (var chap in chapters)
+        {
+            if (carryOver != null && carryOver.Content != null)
+            {
+                if (chap.Content != null)
+                {
+                    var insertee = chap with
+                    {
+                        Content = carryOver.Content
+                           .Concat(chap.Content)
+                           .ToReadonlyCollection()
+                    };
+                    returnee.Add(insertee);
+                }
+                else
+                    returnee.Add(chap);
+                carryOver = null;
+            }
+            else if (chap.Content != null && chap.Content.Count == 1 && chap.Content.First() is PsychDebrief debr)
+                carryOver = chap;
+            else
+                returnee.Add(chap);
+
+        }
+        return returnee;
+
+    }
+
+
 }

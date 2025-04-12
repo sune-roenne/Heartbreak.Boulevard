@@ -1,0 +1,61 @@
+﻿.hbb-psych-debrief-container {
+    position: relative;
+    width: 128%;
+    left: -80px;
+    margin-bottom: 40px;
+}
+
+.hbb-psych-debrief-log-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 705/1000;
+    background-image: url('images/psych/psych-paper.webp');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: 'HbbInkFree';
+    font-size: 14pt;
+
+}
+
+.hbb-psych-debrief-log-date {
+    position: absolute;
+    left: 12%;
+    top: 5.6%;
+    width: 20%;
+    height: 3%;
+    font-weight: 700;
+}
+
+.hbb-psych-debrief-log-place {
+    position: absolute;
+    left: 50%;
+    top: 5.6%;
+    width: 25%;
+    height: 3%;
+    font-weight: 700;
+}
+
+.hbb-psych-debrief-log-patient-no {
+    position: absolute;
+    left: 19.8%;
+    top: 9.8%;
+    width: 20%;
+    height: 3%;
+    font-weight: 700;
+}
+
+.hbb-psych-debrief-log-patient-name {
+    position: absolute;
+    left: 59%;
+    top: 9%;
+    width: 39%;
+    height: 4%;
+    font-weight: 700;
+}
+
+.redact {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('images/psych/redaction.webp');
+}
+

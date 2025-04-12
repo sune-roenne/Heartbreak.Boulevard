@@ -1,0 +1,15 @@
+﻿<div class="hbb-psych-debrief-container">
+    <div class="hbb-psych-debrief-log-container">
+        <div class="hbb-psych-debrief-log-date">@DateText</div>
+        @if (PlaceText != null)
+        {
+            <div class="hbb-psych-debrief-log-place">@PlaceText</div>
+        }
+
+        <div class="hbb-psych-debrief-log-patient-no">@PatientNoText</div>
+        <div class="hbb-psych-debrief-log-patient-name@(PatientNameIsRedacted ? " redact" : "")">@PatientNameText</div>
+    </div>
+
+
+</div>
+
