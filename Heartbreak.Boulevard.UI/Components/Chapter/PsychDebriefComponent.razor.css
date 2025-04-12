@@ -1,7 +1,5 @@
 ﻿.hbb-psych-debrief-container {
     position: relative;
-    width: 128%;
-    left: -80px;
     margin-bottom: 40px;
 }
 
@@ -12,9 +10,8 @@
     background-image: url('images/psych/psych-paper.webp');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    font-family: 'HbbInkFree';
-    font-size: 14pt;
-
+    font-family: 'HbbBradley';
+    color: rgb(7, 6, 87);
 }
 
 .hbb-psych-debrief-log-date {
@@ -57,5 +54,108 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url('images/psych/redaction.webp');
+}
+
+.hbb-psych-debrief-log-content-container {
+    position: absolute;
+    content: '';
+    left: 3%;
+    top: 20%;
+    width: 94%;
+    height: 70%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+}
+.entry-container-high-emphasis {
+    background-size: 110% 110%;
+    background-image: url('images/psych/emphasis.webp');
+    background-repeat: no-repeat;
+}
+
+.entry-container-emphasis {
+    text-transform: uppercase;
+}
+
+.hbb-psych-debrief-log-content-entry-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5%;
+}
+
+.hbb-psych-debrief-log-content-quote {
+    margin-left: 7%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    font-style: italic;
+}
+.hbb-psych-debrief-log-content-quote-line {
+}
+.hbb-psych-debrief-log-content-quote-about {
+    width: 50%;
+    border-top: 0.5px solid rgb(7,6,87);
+    margin-left: 7%;
+    font-weight: 900;
+    margin-top: 0.5%;
+}
+
+.hbb-psych-debrief-log-content-entry-table {
+    width: 100%;
+}
+
+.hbb-psych-debrief-log-content-entry-table-type {
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.hbb-psych-debrief-log-content-entry-table-text-cell {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.hbb-psych-debrief-log-content-entry-table-text-cell div {
+    margin-left: 0.5%;
+}
+
+@media only screen and (max-width: 990px) {
+    .hbb-psych-debrief-container {
+        width: 124%;
+        left: -34px;
+    }
+
+    .hbb-psych-debrief-log-container {
+        font-size: 6.4pt;
+    }
+    .hbb-psych-debrief-log-content-quote {
+        font-size: 5.2pt;
+    }
+    .hbb-psych-debrief-log-content-quote-about {
+        font-size: 5.2pt;
+    }
+
+}
+
+@media only screen and (min-width: 990px) {
+    .hbb-psych-debrief-container {
+        width: 128%;
+        left: -80px;
+        margin-bottom: 40px;
+    }
+
+    .hbb-psych-debrief-log-container {
+        font-size: 14pt;
+    }
+    .hbb-psych-debrief-log-content-quote {
+        font-size: 10pt;
+    }
+    .hbb-psych-debrief-log-content-quote-about {
+        font-size: 10pt;
+    }
+
 }
 

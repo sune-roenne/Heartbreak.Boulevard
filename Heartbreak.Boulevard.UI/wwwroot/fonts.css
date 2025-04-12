@@ -47,3 +47,7 @@
     font-family: 'HbbInkFree';
     src: url('fonts/Inkfree.ttf');
 }
+@font-face {
+    font-family: 'HbbBradley';
+    src: url('fonts/BRADHITC.TTF');
+}

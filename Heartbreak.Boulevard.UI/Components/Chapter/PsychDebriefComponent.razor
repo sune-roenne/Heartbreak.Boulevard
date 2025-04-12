@@ -1,14 +1,50 @@
-﻿<div class="hbb-psych-debrief-container">
-    <div class="hbb-psych-debrief-log-container">
-        <div class="hbb-psych-debrief-log-date">@DateText</div>
-        @if (PlaceText != null)
-        {
-            <div class="hbb-psych-debrief-log-place">@PlaceText</div>
-        }
+﻿@using Booktex.Domain.Book.Specials.Model
+<div class="hbb-psych-debrief-container">
+    @foreach(var log in _split) {
+        <div class="hbb-psych-debrief-log-container">
+            <div class="hbb-psych-debrief-log-date">@DateText</div>
+            @if (PlaceText != null)
+            {
+                <div class="hbb-psych-debrief-log-place">@PlaceText</div>
+            }
 
-        <div class="hbb-psych-debrief-log-patient-no">@PatientNoText</div>
-        <div class="hbb-psych-debrief-log-patient-name@(PatientNameIsRedacted ? " redact" : "")">@PatientNameText</div>
-    </div>
+            <div class="hbb-psych-debrief-log-patient-no">@PatientNoText</div>
+            <div class="hbb-psych-debrief-log-patient-name@(PatientNameIsRedacted ? " redact" : "")">@PatientNameText</div>
+            <div class="hbb-psych-debrief-log-content-container">
+                @foreach(var ent in log) {
+                    <div class="hbb-psych-debrief-log-content-entry-container @EntryContainerEmphasisClass(ent)">
+                        @if(ent is PsychLogQuote quot) {
+                            <div class="hbb-psych-debrief-log-content-quote">
+                                @foreach(var (quotPart, indx) in quot.Lines.Select((_, indx) => (_,indx))) {
+                                    <div class="hbb-psych-debrief-log-content-quote-line">@quotPart</div>
+                                }
+                            </div>
+                            <div class="hbb-psych-debrief-log-content-quote-about">@QuoteAbout(quot)</div>
+                        }
+                        else {
+                            <table class="hbb-psych-debrief-log-content-entry-table">
+                                <tbody>
+                                    <tr>
+                                        @if(IncludeType(ent)) {
+                                            <td scope="row" class="hbb-psych-debrief-log-content-entry-table-type">@TableEntryType(ent):</td>
+                                        }
+                                        <td class="hbb-psych-debrief-log-content-entry-table-text-cell">
+                                            @foreach(var part in SplitToBlocks(ent)) {
+                                                foreach(var str in part.GetWordStrings) {
+                                                    <div class="@(part.IsRedacted ? "redact" : "")">@(str)</div>
+                                                }
+                                            }
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
 
 
 </div>
