@@ -108,8 +108,9 @@ public class HBBGitHubClient : IHBBGitHubClient
                 var ret = new PsychDebrief(log);
                 return [ret];
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
 
@@ -232,11 +233,29 @@ public class HBBGitHubClient : IHBBGitHubClient
 
     private static IReadOnlyCollection<HBBChapterEntry> Aggregate(IEnumerable<HBBChapterEntry> chapters)
     {
+        var chapList = chapters.ToList();
         var returnee = new List<HBBChapterEntry>();
         HBBChapterEntry? carryOverBefore = null;
         HBBChapterEntry? carryOverAfter = null;
         foreach (var chap in chapters)
         {
+            if (carryOverAfter != null && carryOverAfter.Content != null && returnee.Any())
+            {
+                var lastIndx = returnee.Count - 1;
+                var last = returnee[lastIndx];
+                if (last.Content != null)
+                {
+                    returnee[lastIndx] = last with
+                    {
+                        Content = last.Content
+                           .Concat(carryOverAfter.Content)
+                           .ToReadonlyCollection()
+                    };
+                }
+                else returnee.Add(carryOverAfter);
+                carryOverAfter = null;
+            }
+
             if (carryOverBefore != null && carryOverBefore.Content != null)
             {
                 if (chap.Content != null)
@@ -253,22 +272,7 @@ public class HBBGitHubClient : IHBBGitHubClient
                     returnee.Add(chap);
                 carryOverBefore = null;
             }
-            else if(carryOverAfter != null && carryOverAfter.Content != null && returnee.Any())
-            {
-                var lastIndx = returnee.Count - 1;
-                var last = returnee[lastIndx];
-                if (last.Content != null)
-                {
-                    returnee[lastIndx] = last with
-                    {
-                        Content = last.Content
-                           .Concat(carryOverAfter.Content)
-                           .ToReadonlyCollection()
-                    };
-                }
-                else returnee.Add(carryOverAfter);
-                carryOverAfter = null;
-            }
+            
             else if (chap.Content != null && chap.Specification.CarryOverBefore)
                 carryOverBefore = chap;
             else if(chap.Content != null && chap.Specification.CarryOverAfter)
