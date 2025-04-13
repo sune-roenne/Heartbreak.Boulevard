@@ -4,7 +4,9 @@ public record HBBChapterSpecification(
     string ChapterName,
     string OrderKey,
     string? FileName,
-    string? PlaylistId
+    string? PlaylistId,
+    bool CarryOverBefore = false,
+    bool CarryOverAfter = false
     )
 {
     public const string PsychFileNameEnding = "psych";
