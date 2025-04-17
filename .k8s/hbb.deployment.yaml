@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hbb
-        image: docker.io/library/hbb:1.0.5
+        image: docker.io/library/hbb:1.0.6
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
