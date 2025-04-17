@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Booktex.Html" Version="1.4.9" />
+    <PackageReference Include="Booktex.Html" Version="1.4.16" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Octokit" Version="14.0.0" />
   </ItemGroup>
